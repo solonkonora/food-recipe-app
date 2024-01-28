@@ -1,11 +1,23 @@
 // eslint-disable-next-line no-unused-vars
 import React from "react";
 
-const SearchBar = (props) => {
-    return (
-        <div>
-
-        </div>
-    )
-}
-export default SearchBar
+const SearchBar = ([value, isLoading, handleSubmit, onChange]) => {
+  return (
+    <form onSubmit={handleSubmit}>
+      <input
+        value={value}
+        disabled={isLoading}
+        onChange={onChange}
+        placeholder="Search Recipes"
+        className="forn-control"
+      />
+      <input
+        disabled={isLoading || !value}
+        type="submit"
+        className="btn"
+        value="Search"
+      />
+    </form>
+  );
+};
+export default SearchBar;
