@@ -52,7 +52,7 @@ function App() {
 
   return (
     <div className="container">
-      <h2>Le Recipees</h2>
+      <h2>Tasty Recipes</h2>
 
       <SearchBar
         handleSubmit={handleSubmit}
