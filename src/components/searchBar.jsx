@@ -19,6 +19,7 @@ const SearchBar = ({
         className="form-control"
       />
       <input
+      // disabled when the app is fetching data and also when there is no data in the input
         disabled={isLoading || !value}
         type="submit"
         className="btn"

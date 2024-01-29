@@ -40,9 +40,10 @@ function App() {
     }
   };
 
+  // without the array object "[]" at the end, useEffect will be rendering and updating the entire dom each time the code is runned
   useEffect(() => {
     searchRecipes();
-  });
+  }, []);
 
   const handleSubmit = (event) => {
     event.preventDefault();
