@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import "./App.css";
-import SearchBar from "./components/searchBar";
-import RecipeCard from "./components/recipeCard";
+import SearchBar from "./components/search-bar";
+import RecipeCard from "./components/recipe-card";
 
 const apiUrl = "https://www.themealdb.com/api/json/v1/1/search.php?s=";
 
