@@ -65,21 +65,3 @@ RecipeCard.propTypes = {
 };
 
 export default RecipeCard;
-    
-
-
-
-// import React from "react";
-
-// const RecipeCard = ({ recipe }) => {
-//   const { strMeal, strMealThumb } = recipe;
-
-//   return (
-//     <div className="recipe-card">
-//       <img src={strMealThumb} alt={strMeal} />
-//       <h3>{strMeal}</h3>
-//     </div>
-//   );
-// };
-
-// export default RecipeCard;
