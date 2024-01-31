@@ -12,16 +12,7 @@ function App() {
   const [query, setQuery] = useState("");
   const [recipes, setRecipes] = useState([]);
 
-  // // fetching data
-  // const searchRecipes = async () => {
-  //   setIsLoading(true);
-  //   const url = apiUrl + query;
-  //   const res = await fetch(url);
-  //   const data = await res.json();
-  //   setRecipes(data.meals);
-  //   setIsLoading(false);
-  // };
-
+  //fetching data
   const searchRecipes = async () => {
     setIsLoading(true);
     const url = apiUrl + query;
