@@ -1,11 +1,11 @@
+// eslint-disable-next-line no-unused-vars
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import IngredientsPage from "./components/ingredients";
 import { useState, useEffect } from "react";
 import "./App.css";
-// eslint-disable-next-line no-unused-vars
-import Ingredients from "./components/ingredients";
-import "./api-calls.js"
 import SearchBar from "./components/search-bar";
 import RecipeCard from "./components/recipe-card";
-
 
 
 const apiUrl = "https://www.themealdb.com/api/json/v1/1/search.php?s=";
@@ -45,26 +45,33 @@ function App() {
   };
 
   return (
-    <div className="container">
-      <h2>Tasty Recipes</h2>
-
-      <SearchBar
-        handleSubmit={handleSubmit}
-        value={query}
-        onChange={(event) => setQuery(event.target.value)}
-        isLoading={isLoading}
-      />
-
-      <div className="recipes">
-        {recipes ? (
-          recipes.map((recipe) => (
-            <RecipeCard key={recipe.idMeal} recipe={recipe} />
-          ))
-        ) : (
-          <p>No Recipes!</p>
-        )}
-      </div>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/ingredients/:id" element={<IngredientsPage />} />
+        <Route path="/" exact element={
+          <div className="container">
+            <h2>Tasty Recipes</h2>
+  
+            <SearchBar
+              handleSubmit={handleSubmit}
+              value={query}
+              onChange={(event) => setQuery(event.target.value)}
+              isLoading={isLoading}
+            />
+  
+            <div className="recipes">
+              {recipes ? (
+                recipes.map((recipe) => (
+                  <RecipeCard key={recipe.idMeal} recipe={recipe} />
+                ))
+              ) : (
+                <p>No Recipes!</p>
+              )}
+            </div>
+          </div>
+        } />
+      </Routes>
+    </Router>
   );
 }
 

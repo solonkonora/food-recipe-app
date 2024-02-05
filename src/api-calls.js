@@ -1,6 +1,5 @@
 const apiUrl = "https://www.themealdb.com/api/json/v1/1";
 
-
 // export const searchRecipes = async (query) => {
 //   const url = `${apiUrl}/search.php?s=${query}`;
 
@@ -47,12 +46,17 @@ export const getIngredientsById = async (id) => {
     for (let i = 1; i <= 20; i++) {
       if (meal[`strIngredient${i}`]) {
         ingredients.push({
+          image: `https://www.themealdb.com/images/ingredients/${
+            meal[`strIngredient${i}`]
+          }-Small.png`,
           ingredient: meal[`strIngredient${i}`],
           measure: meal[`strMeasure${i}`],
         });
       }
     }
-    return ingredients;
+    const instructions = meal.strInstructions;
+    return { ingredients, instructions };
+
   } catch (error) {
     console.error(error);
     throw error;
