@@ -1,6 +1,7 @@
 * {
   font-family: Arial, Arial, Helvetica, sans-serif;
   box-sizing: border-box;
+
 }
 
 .container {
@@ -93,15 +94,15 @@ a {
     font-size: 10px;
   }
   
-  /* .recipes {
+  .recipes {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     margin-top: 10px;
-  } */
+  }
   
   form {
-    width: 10%;
+    width: 20%;
     justify-content: center;
   }
   
@@ -109,18 +110,20 @@ a {
     border: 1px solid;
     padding: 5px;
     font-size: 6px;
+    justify-content: center;
+margin: 10px 2px;
   }
 
 
 
-  .form-control {
+  /* .form-control {
     width: 30vw;
-  }
+  } */
 
   .btn {
-    border-radius: 10px;
-    width: 10%;
-    max-width: 10px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    cursor: pointer;
   }
 
   .card {

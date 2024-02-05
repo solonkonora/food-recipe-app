@@ -1,37 +1,37 @@
 const apiUrl = "https://www.themealdb.com/api/json/v1/1";
 
 
-export const searchRecipes = async (query) => {
-  const url = `${apiUrl}/search.php?s=${query}`;
+// export const searchRecipes = async (query) => {
+//   const url = `${apiUrl}/search.php?s=${query}`;
 
-  try {
-    const response = await fetch(url);
-    if (!response.ok) {
-      throw new Error("Failed to fetch data");
-    }
-    const data = await response.json();
-    return data.meals;
-  } catch (error) {
-    console.error(error);
-    throw error;
-  }
-};
+//   try {
+//     const response = await fetch(url);
+//     if (!response.ok) {
+//       throw new Error("Failed to fetch data");
+//     }
+//     const data = await response.json();
+//     return data.meals;
+//   } catch (error) {
+//     console.error(error);
+//     throw error;
+//   }
+// };
 
-export const getRecipeById = async (id) => {
-  const url = `${apiUrl}/lookup.php?i=${id}`;
+// export const getRecipeById = async (id) => {
+//   const url = `${apiUrl}/lookup.php?i=${id}`;
 
-  try {
-    const response = await fetch(url);
-    if (!response.ok) {
-      throw new Error("Failed to fetch data");
-    }
-    const data = await response.json();
-    return data.meals[0];
-  } catch (error) {
-    console.error(error);
-    throw error;
-  }
-};
+//   try {
+//     const response = await fetch(url);
+//     if (!response.ok) {
+//       throw new Error("Failed to fetch data");
+//     }
+//     const data = await response.json();
+//     return data.meals[0];
+//   } catch (error) {
+//     console.error(error);
+//     throw error;
+//   }
+// };
 
 export const getIngredientsById = async (id) => {
   const url = `${apiUrl}/lookup.php?i=${id}`;
