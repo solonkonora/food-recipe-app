@@ -91,7 +91,7 @@ a {
 
 
   h2 {
-    font-size: 10px;
+    font-size: 20px;
   }
   
   .recipes {
@@ -110,16 +110,10 @@ a {
   input {
     border: 1px solid;
     padding: 5px;
-    font-size: 6px;
+    font-size: 10px;
     justify-content: center;
 margin: 10px 2px;
   }
-
-
-
-  /* .form-control {
-    width: 30vw;
-  } */
 
   .btn {
     border-top-left-radius: 10px;
@@ -146,13 +140,13 @@ margin: 10px 2px;
   }
 
   .category {
-    font-size: 10px;
+    font-size: 12px;
   }
   
   a {
     background-color: #ffa500;
     color: #fff;
     padding: 8px;
-    font-size: 8px;
+    font-size: 12px;
   }
 }
