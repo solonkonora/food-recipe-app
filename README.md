@@ -32,7 +32,7 @@ This is a web application built with React that allows users to browse and searc
 │   ├── components/
 │   │   ├── SearchBar.jsx
 │   │   ├── RecipeCard.jsx
-│   │   
+│   │   |---Ingredient.jsx
 │   │   
 │   ├── App.jsx
 │   ├── App.css
