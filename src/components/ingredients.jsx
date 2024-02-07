@@ -44,7 +44,7 @@ const Ingredients = () => {
         style={{
           margin: "10px auto",
           width: "20%",
-          color: "#fff",
+          color: "white",
           background: "teal",
           padding: "10px 20px",
           textDecoration: "none",
