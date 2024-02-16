@@ -59,15 +59,15 @@ function App() {
               isLoading={isLoading}
             />
   
-            <div className="recipes">
-              {recipes ? (
-                recipes.map((recipe) => (
-                  <RecipeCard key={recipe.idMeal} recipe={recipe} />
-                ))
-              ) : (
-                <p>No Recipes!</p>
-              )}
-            </div>
+  <div className="recipes">
+  {recipes.length > 0 ? (
+    recipes.map((recipe) => (
+      <RecipeCard key={recipe.idMeal} recipe={recipe} />
+    ))
+  ) : (
+    <p>No Recipes!</p>
+  )}
+</div>
           </div>
         } />
       </Routes>

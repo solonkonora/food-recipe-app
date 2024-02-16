@@ -1,13 +1,15 @@
 * {
   font-family: Arial, Arial, Helvetica, sans-serif;
   box-sizing: border-box;
+  /* margin: 0; */
+  padding: 0;
 
 }
 
 .container {
   background-color: #fff;
-  min-width: 1000px;
-  min-height: 100vh;
+  /* min-width: 1000px; */
+  /* min-height: 100vh; */
   margin: 30px auto;
   border-radius: 20px;
   padding: 10px;
@@ -22,6 +24,7 @@ h2 {
   flex-wrap: wrap;
   justify-content: center;
   margin-top: 20px;
+  border: 2px solid yellow;
 }
 
 form {
@@ -62,11 +65,16 @@ input:focus {
 
 .card-image {
   width: 100%;
+  border: 2px solid yellow;
+  border-radius: 10px;
 }
 
 .card-body {
   padding: 10px;
   text-align: center;
+  background-color: lemonchiffon;
+  border: 1px solid teal;
+  border-radius: 4px;
 }
 
 .category {
@@ -81,10 +89,45 @@ a {
   text-decoration: none;
 }
 
+.dialog {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 400px;
+  height: 100vh;
+  background-color: white;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  z-index: 9999;
+  overflow-y: auto;
+}
+
+.dialog h4 {
+  margin-top: 0;
+}
+
+.dialog p {
+  margin-bottom: 20px;
+}
+
+.close-dialog-button {
+  display: block;
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #333;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.close-dialog-button:hover {
+  background-color: #555;
+}
+
 @media screen and (max-width: 600px) {
   .container {
-    min-width: auto;
-    margin: 10px;
+   width: auto;
+    /* margin: 10px; */
     border-radius: 10px;
     padding: 5px;
   }
@@ -122,16 +165,16 @@ margin: 10px 2px;
   }
 
   .card {
-    width: 150px;
+    /* width: 150px;
     background-color: #fff;
     margin: 5px;
     border: 5px auto;
-    padding-bottom: 1px;
+    padding-bottom: 1px; */
     text-align: center;
   }
   
   .card-image {
-    width: 80%;
+    width: 100%;
   }
   
   .card-body {

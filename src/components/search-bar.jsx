@@ -3,24 +3,23 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const SearchBar = ({ 
-    value,
-    isLoading, 
-    handleSubmit, 
-    onChange 
+  value,
+  // isLoading, 
+  handleSubmit, 
+  onChange 
 }) => {
     
   return (
     <form onSubmit={handleSubmit}>
       <input
         value={value}
-        disabled={isLoading}
+        // disabled={isLoading}
         onChange={onChange}
         placeholder="Search Recipes"
         className="form-control"
       />
       <input
-      // disabled when the app is fetching data and also when there is no data in the input
-        disabled={isLoading || !value}
+        // disabled={isLoading}
         type="submit"
         className="btn"
         value="Search"
