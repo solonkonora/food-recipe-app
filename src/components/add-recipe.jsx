@@ -7,15 +7,23 @@ const AddRecipe = ({ onAddRecipe }) => {
   const [recipe, setRecipe] = useState({
     recipeName: "",
     ingredients: "",
-    instructions: ""
+    instructions: "",
+    image: ""
   });
 
   const handleChange = (event) => {
-    const { name, value } = event.target;
-    setRecipe((prevRecipe) => ({
-      ...prevRecipe,
-      [name]: value
-    }));
+    const { name, value, files } = event.target;
+    if (name === "image") {
+      setRecipe((prevRecipe) => ({
+        ...prevRecipe,
+        [name]: files[0]
+      }));
+    } else {
+      setRecipe((prevRecipe) => ({
+        ...prevRecipe,
+        [name]: value
+      }));
+    }
   };
 
   const handleSubmit = (event) => {
@@ -24,15 +32,16 @@ const AddRecipe = ({ onAddRecipe }) => {
     setRecipe({
       recipeName: "",
       ingredients: "",
-      instructions: ""
+      instructions: "",
+      image: ""
     });
   };
 
   return (
-    <div>
-      <h2>Add Recipe</h2>
-      <form onSubmit={handleSubmit}>
-        <label>
+    <div className="add-recipe-container">
+      <h2 className="add-recipe-title">Add Recipe</h2>
+      <form className="add-recipe-form" onSubmit={handleSubmit}>
+        <label className="add-recipe-label">
           Recipe Name:
           <input
             type="text"
@@ -40,30 +49,48 @@ const AddRecipe = ({ onAddRecipe }) => {
             value={recipe.recipeName}
             onChange={handleChange}
             required
+            className="add-recipe-input"
           />
         </label>
         <br />
-        <label>
+        <label className="add-recipe-label">
           Ingredients:
           <textarea
             name="ingredients"
             value={recipe.ingredients}
             onChange={handleChange}
             required
+            className="add-recipe-textarea"
           />
         </label>
         <br />
-        <label>
+        <label className="add-recipe-label">
           Instructions:
           <textarea
             name="instructions"
             value={recipe.instructions}
             onChange={handleChange}
             required
+            className="add-recipe-textarea"
           />
         </label>
         <br />
-        <button type="submit">Add Recipe</button>
+        <label className="add-recipe-label">
+          Image:
+          <input
+            type="file"
+            name="image"
+            onChange={handleChange}
+            className="add-recipe-input"
+          />
+        </label>
+        {recipe.image && (
+          <img src={URL.createObjectURL(recipe.image)} alt="Selected" />
+        )}
+        <br />
+        <button type="submit" className="add-recipe-button">
+          Add Recipe
+        </button>
       </form>
     </div>
   );
