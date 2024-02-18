@@ -1,15 +1,11 @@
 * {
   font-family: Arial, Arial, Helvetica, sans-serif;
   box-sizing: border-box;
-  /* margin: 0; */
   padding: 0;
-
 }
 
 .container {
   background-color: #fff;
-  /* min-width: 1000px; */
-  /* min-height: 100vh; */
   margin: 30px auto;
   border-radius: 20px;
   padding: 10px;
@@ -112,7 +108,7 @@ a {
 
 .close-dialog-button {
   display: block;
-  margin-top: 10px;
+  margin: 20px;
   padding: 10px 20px;
   background-color: #333;
   color: white;
@@ -125,13 +121,30 @@ a {
 }
 
 @media screen and (max-width: 600px) {
+  .dialog {
+    width: 100%;
+    font-size: 8px;
+  }
+
+  .dialog p {
+    margin: 10px 15px;
+  }
+
+  .dialog h4 {
+    margin-top: 0;
+    font-size: 15px;
+  }
+
+  .close-dialog-button {
+    display: block;
+    margin: 20px;
+  }
+
   .container {
    width: auto;
-    /* margin: 10px; */
     border-radius: 10px;
     padding: 5px;
   }
-
 
   h2 {
     font-size: 20px;
@@ -155,7 +168,7 @@ a {
     padding: 5px;
     font-size: 10px;
     justify-content: center;
-margin: 10px 2px;
+    margin: 10px 2px;
   }
 
   .btn {
@@ -165,11 +178,6 @@ margin: 10px 2px;
   }
 
   .card {
-    /* width: 150px;
-    background-color: #fff;
-    margin: 5px;
-    border: 5px auto;
-    padding-bottom: 1px; */
     text-align: center;
   }
   
