@@ -1,4 +1,132 @@
 // eslint-disable-next-line no-unused-vars
+// import React, { useState, useEffect } from "react";
+// import PropTypes from "prop-types";
+// import "../assets/styles/update-recipe.css";
+
+// const UpdateRecipe = ({ onUpdateRecipe, recipeToUpdate }) => {
+//   const [recipe, setRecipe] = useState({
+//     recipeId: recipeToUpdate.recipeId,
+//     recipeName: recipeToUpdate.recipeName,
+//     ingredients: recipeToUpdate.ingredients,
+//     instructions: recipeToUpdate.instructions,
+//     image: ""
+//   });
+
+//   useEffect(() => {
+//     const savedRecipe = localStorage.getItem("updatedRecipe");
+//     if (savedRecipe) {
+//       setRecipe(JSON.parse(savedRecipe));
+//     }
+//   }, []);
+
+//   const handleChange = (event) => {
+//     const { name, value, files } = event.target;
+//     if (name === "image") {
+//       setRecipe((prevRecipe) => ({
+//         ...prevRecipe,
+//         [name]: files[0]
+//       }));
+//     } else {
+//       // const savedRecipe = JSON.parse(localStorage.getItem(value));
+//       const savedRecipe = JSON.parse(localStorage.getItem(name));
+//       if (savedRecipe) {
+//         setRecipe(savedRecipe);
+//       } else {
+//         setRecipe((prevRecipe) => ({
+//           ...prevRecipe,
+//           [name]: value
+//         }));
+//       }
+//     }
+//   };
+
+//   const handleSubmit = (event) => {
+//     event.preventDefault();
+//     onUpdateRecipe(recipe);
+//     localStorage.setItem(recipe.recipeName, JSON.stringify(recipe));
+//     setRecipe({
+//       recipeId: "",
+//       recipeName: "",
+//       ingredients: "",
+//       instructions: "",
+//       image: ""
+//     });
+//   };
+
+//   useEffect(() => {
+//     localStorage.setItem("updatedRecipe", JSON.stringify(recipe));
+//   }, [recipe]);
+
+//   return (
+//     <div className="update-recipe-container">
+//       <h2>Update Recipe</h2>
+//       <form onSubmit={handleSubmit}>
+//         <label>
+//           Recipe Name:
+//           <input
+//             type="text"
+//             name="recipeName"
+//             value={recipe.recipeName}
+//             onChange={handleChange}
+//             // disabled
+//            // required
+//           />
+//         </label>
+//         <br />
+//         <label>
+//           Ingredients:
+//           <textarea
+//             name="ingredients"
+//             value={recipe.ingredients}
+//             onChange={handleChange}
+//             //required
+//           />
+//         </label>
+//         <br />
+//         <label>
+//           Instructions:
+//           <textarea
+//             name="instructions"
+//             value={recipe.instructions}
+//             onChange={handleChange}
+//             //required
+//           />
+//         </label>
+//         <br />
+//         <label>
+//           Image:
+//           <input type="file" name="image" onChange={handleChange} />
+//         </label>
+//         {recipe.image && (
+//           <img src={URL.createObjectURL(recipe.image)} alt="Selected" />
+//         )}
+//         <br />
+//         <button type="submit">Update Recipe</button>
+//       </form>
+//     </div>
+//   );
+// };
+
+// UpdateRecipe.propTypes = {
+//   // recipeToUpdate: PropTypes.shape({
+//   //   recipeId: PropTypes.string,
+//   //   recipeName: PropTypes.string,
+//   //   ingredients: PropTypes.string,
+//   //   instructions: PropTypes.string,
+//   //   image: PropTypes.string 
+//   // }),
+//   onUpdateRecipe: PropTypes.func,
+//   recipeToUpdate: PropTypes.string
+// };
+
+// export default UpdateRecipe;
+
+
+
+
+
+
+// // eslint-disable-next-line no-unused-vars
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import "../assets/styles/update-recipe.css";
@@ -9,7 +137,9 @@ const UpdateRecipe = ({ onUpdateRecipe, recipeToUpdate }) => {
     recipeName: recipeToUpdate.recipeName,
     ingredients: recipeToUpdate.ingredients,
     instructions: recipeToUpdate.instructions,
-    image: ""
+    isImage: recipeToUpdate.isImage,
+    imageUrl: recipeToUpdate.imageUrl,
+    image: null
   });
 
   useEffect(() => {
@@ -24,32 +154,30 @@ const UpdateRecipe = ({ onUpdateRecipe, recipeToUpdate }) => {
     if (name === "image") {
       setRecipe((prevRecipe) => ({
         ...prevRecipe,
-        [name]: files[0]
+        image: files[0],
+        isImage: true,
+        imageUrl: URL.createObjectURL(files[0])
       }));
     } else {
-      // const savedRecipe = JSON.parse(localStorage.getItem(value));
-      const savedRecipe = JSON.parse(localStorage.getItem(name));
-      if (savedRecipe) {
-        setRecipe(savedRecipe);
-      } else {
-        setRecipe((prevRecipe) => ({
-          ...prevRecipe,
-          [name]: value
-        }));
-      }
+      setRecipe((prevRecipe) => ({
+        ...prevRecipe,
+        [name]: value
+      }));
     }
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
     onUpdateRecipe(recipe);
-    localStorage.setItem(recipe.recipeName, JSON.stringify(recipe));
+    localStorage.setItem(recipe.recipeId, JSON.stringify(recipe));
     setRecipe({
       recipeId: "",
       recipeName: "",
       ingredients: "",
       instructions: "",
-      image: ""
+      isImage: false,
+      imageUrl: "",
+      image: null
     });
   };
 
@@ -68,8 +196,7 @@ const UpdateRecipe = ({ onUpdateRecipe, recipeToUpdate }) => {
             name="recipeName"
             value={recipe.recipeName}
             onChange={handleChange}
-            // disabled
-           // required
+            required
           />
         </label>
         <br />
@@ -79,7 +206,7 @@ const UpdateRecipe = ({ onUpdateRecipe, recipeToUpdate }) => {
             name="ingredients"
             value={recipe.ingredients}
             onChange={handleChange}
-            //required
+            required
           />
         </label>
         <br />
@@ -89,7 +216,7 @@ const UpdateRecipe = ({ onUpdateRecipe, recipeToUpdate }) => {
             name="instructions"
             value={recipe.instructions}
             onChange={handleChange}
-            //required
+            required
           />
         </label>
         <br />
@@ -97,8 +224,8 @@ const UpdateRecipe = ({ onUpdateRecipe, recipeToUpdate }) => {
           Image:
           <input type="file" name="image" onChange={handleChange} />
         </label>
-        {recipe.image && (
-          <img src={URL.createObjectURL(recipe.image)} alt="Selected" />
+        {recipe.imageUrl && (
+          <img src={recipe.imageUrl} alt="Selected" />
         )}
         <br />
         <button type="submit">Update Recipe</button>
@@ -108,43 +235,15 @@ const UpdateRecipe = ({ onUpdateRecipe, recipeToUpdate }) => {
 };
 
 UpdateRecipe.propTypes = {
-  // recipeToUpdate: PropTypes.shape({
-  //   recipeId: PropTypes.string,
-  //   recipeName: PropTypes.string,
-  //   ingredients: PropTypes.string,
-  //   instructions: PropTypes.string,
-  //   image: PropTypes.string 
-  // }),
   onUpdateRecipe: PropTypes.func,
-  recipeToUpdate: PropTypes.string
+  recipeToUpdate: PropTypes.shape({
+    recipeId: PropTypes.string,
+    recipeName: PropTypes.string,
+    ingredients: PropTypes.string,
+    instructions: PropTypes.string,
+    isImage: PropTypes.bool,
+    imageUrl: PropTypes.string
+  })
 };
 
 export default UpdateRecipe;
-
-
-
-
-
-
-// // eslint-disable-next-line no-unused-vars
-// import React, { useState, useEffect } from "react";
-// // import PropTypes from "prop-types";
-// import "../assets/styles/update-recipe.css";
-// import { foodData, updateLocalStorage } from './new-recipies.jsx';
-
-// // Function to update an existing recipe
-// const updateRecipe = (recipeId, updatedRecipe) => {
-//   // Find the index of the recipe to be updated in the array
-//   const recipeIndex = foodData.findIndex((recipe) => recipe.id === recipeId);
-
-//   // If the recipe exists, update it with the new data
-//   if (recipeIndex !== -1) {
-//     foodData[recipeIndex] = { ...foodData[recipeIndex], ...updatedRecipe };
-
-//     // Update the foodData array in local storage
-//     updateLocalStorage();
-//   }
-// };
-
-// // Rest of the code...
-// export default updateRecipe;
