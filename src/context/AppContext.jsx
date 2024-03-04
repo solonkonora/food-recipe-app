@@ -10,7 +10,7 @@ function AppContextProvider({ children }) {
 
     const [isLoading, setIsLoading] = useState(false);
 
-    const searchRecipes = async (query = '') => {
+    const searchRecipes = async (query) => {
         setIsLoading(true);
         const url = apiUrl + query.trim();
 

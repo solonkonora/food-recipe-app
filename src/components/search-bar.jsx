@@ -13,6 +13,7 @@ const SearchBar = () => {
     searchRecipes();
   }
 
+  // debouncer
   useEffect(() => {
 
     if (query === '') {
