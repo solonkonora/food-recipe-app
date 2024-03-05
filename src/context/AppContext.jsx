@@ -60,3 +60,40 @@ export {
     AppContextProvider,
     useAppContext
 }
+
+
+
+
+
+
+
+
+// import React, { createContext, useState } from "react";
+
+// export const AppContext = createContext();
+
+// const AppContextProvider = (props) => {
+//   const [searchQuery, setSearchQuery] = useState("");
+
+//   const searchRecipes = async () => {
+//     if (searchQuery && searchQuery.trim) {
+//       const trimmedQuery = searchQuery.trim();
+//       // Rest of the code for searching recipes
+//     }
+//   };
+
+//   const contextData = {
+//     searchQuery,
+//     setSearchQuery,
+//     searchRecipes
+//   };
+
+//   return (
+//     <AppContext.Provider value={contextData}>
+//       {props.children}
+//     </AppContext.Provider>
+//   );
+// };
+
+// export default AppContext;
+// export { AppContextProvider };

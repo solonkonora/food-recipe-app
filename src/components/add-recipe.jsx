@@ -10,22 +10,6 @@ const AddRecipe = ({ onAddRecipe }) => {
     image: null
   });
 
-  // const handleChange = (event) => {
-  //   const { name, value, files } = event.target;
-  //   if (name === "image") {
-  //     const imageUrl = URL.createObjectURL(files[0]); // Create a URL for the selected image
-  //     setRecipe((prevRecipe) => ({
-  //       ...prevRecipe,
-  //       [name]: imageUrl // Store the image URL in the recipe state
-  //     }));
-  //   } else {
-  //     setRecipe((prevRecipe) => ({
-  //       ...prevRecipe,
-  //       [name]: value
-  //     }));
-  //   }
-  // };
-
   const handleChange = (event) => {
     const { name, value, files } = event.target;
     if (name === "image") {

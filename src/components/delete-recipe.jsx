@@ -51,3 +51,35 @@ export default DeleteRecipe;
 // };
 
 // export default deleteRecipe;
+
+
+// import React, { useContext } from "react";
+// import { RecipeContext } from "../context/RecipeContext";
+// import "../assets/styles/delete-recipe.css";
+
+// const DeleteRecipe = () => {
+//   const { recipes, deleteRecipe } = useContext(RecipeContext);
+
+//   const handleDeleteRecipe = (recipeId) => {
+//     deleteRecipe(recipeId);
+//   };
+
+//   return (
+//     <div className="delete-recipe-container">
+//       <h2 className="delete-recipe-title">Delete Recipe</h2>
+//       {recipes.map((recipe) => (
+//         <div key={recipe.id} className="recipe-item">
+//           <span>{recipe.recipeName}</span>
+//           <button
+//             className="delete-recipe-button"
+//             onClick={() => handleDeleteRecipe(recipe.id)}
+//           >
+//             Delete
+//           </button>
+//         </div>
+//       ))}
+//     </div>
+//   );
+// };
+
+// export default DeleteRecipe;
