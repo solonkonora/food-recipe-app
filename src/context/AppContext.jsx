@@ -8,7 +8,7 @@ function AppContextProvider({ children }) {
     const [addedRecipes, setAddedRecipes] = useState([]);
     const [recipes, setRecipes] = useState([]);
 
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(false); // a boolean variable to track the boolean state
 
     const searchRecipes = async (query) => {
         setIsLoading(true);

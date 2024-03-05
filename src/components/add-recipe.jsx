@@ -1,4 +1,3 @@
-// eslint-disable-next-line no-unused-vars
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import "../assets/styles/add-recipe.css";
@@ -11,14 +10,34 @@ const AddRecipe = ({ onAddRecipe }) => {
     image: null
   });
 
+  // const handleChange = (event) => {
+  //   const { name, value, files } = event.target;
+  //   if (name === "image") {
+  //     const imageUrl = URL.createObjectURL(files[0]); // Create a URL for the selected image
+  //     setRecipe((prevRecipe) => ({
+  //       ...prevRecipe,
+  //       [name]: imageUrl // Store the image URL in the recipe state
+  //     }));
+  //   } else {
+  //     setRecipe((prevRecipe) => ({
+  //       ...prevRecipe,
+  //       [name]: value
+  //     }));
+  //   }
+  // };
+
   const handleChange = (event) => {
     const { name, value, files } = event.target;
     if (name === "image") {
-      const imageUrl = URL.createObjectURL(files[0]); // Create a URL for the selected image
-      setRecipe((prevRecipe) => ({
-        ...prevRecipe,
-        [name]: imageUrl // Store the image URL in the recipe state
-      }));
+      const reader = new FileReader();
+      reader.onload = () => {
+        const base64Image = reader.result;
+        setRecipe((prevRecipe) => ({
+          ...prevRecipe,
+          [name]: base64Image // Store the base64 image in the recipe state
+        }));
+      };
+      reader.readAsDataURL(files[0]); // Read the image file as data URL
     } else {
       setRecipe((prevRecipe) => ({
         ...prevRecipe,

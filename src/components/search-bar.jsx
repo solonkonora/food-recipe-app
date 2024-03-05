@@ -6,6 +6,7 @@ const apiUrl = "https://www.themealdb.com/api/json/v1/1/search.php?s=";
 const SearchBar = () => {
   const { searchRecipes } = useAppContext();
 
+
   const [query, setQuery] = useState("");
 
   const handleSubmit = (event) => {
@@ -16,7 +17,7 @@ const SearchBar = () => {
   // debouncer
   useEffect(() => {
 
-    if (query === '') {
+    if (query === "") {
       searchRecipes();
       return;
     };
@@ -34,21 +35,22 @@ const SearchBar = () => {
   }, [query]);
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        value={query}
-        // disabled={isLoading}
-        onChange={(e) => setQuery(e.target.value)}
-        placeholder="Search Recipes"
-        className="form-control"
-      />
-      <input
-        // disabled={isLoading}
-        type="submit"
-        className="btn"
-        value="Search"
-      />
-    </form>
+      <form onSubmit={handleSubmit}>
+        <input
+          value={query}
+          //  isLoading
+          onChange={(e) => setQuery(e.target.value)}
+          placeholder="Search Recipes"
+          className="form-control"
+        />
+        <input
+          // isLoading
+          type="submit"
+          className="btn"
+          value="Search"
+        />
+      </form>
+
   );
 };
 

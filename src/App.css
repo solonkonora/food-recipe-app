@@ -20,7 +20,7 @@ h2 {
   flex-wrap: wrap;
   justify-content: center;
   margin-top: 20px;
-  border: 2px solid yellow;
+  border: 2px solid orange;
 }
 
 form {
@@ -61,7 +61,7 @@ input:focus {
 
 .card-image {
   width: 100%;
-  border: 2px solid yellow;
+  border: 2px solid orange;
   border-radius: 10px;
 }
 

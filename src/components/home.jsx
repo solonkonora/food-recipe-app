@@ -29,12 +29,12 @@ return (
     </div>
   </div>
 
-  <div className="section-two">
+  {/* <div className="section-two">
   <div class="image-container">
   <img src="https://as2.ftcdn.net/v2/jpg/03/01/11/29/1000_F_301112963_CaHDvpGJfHRo3SqDikrWDTHfFfCfRS2U.jpg" alt="example" />
   <img src="https://media.istockphoto.com/id/1383962772/photo/nigerian-food.jpg?s=612x612&w=0&k=20&c=u-_1qwHBoY9Yh3alnsRbix6hxgl3_TXhT9lpEvlhH10=" alt="example" />
 </div>
-  </div>
+  </div> */}
 </div>
 </div>
 </>
