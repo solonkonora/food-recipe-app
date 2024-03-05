@@ -1,11 +1,12 @@
 # React Profile App
-This is a web application built with React that allows users to browse and search for food recipes. Users can view recipe details, save their favorite recipes, and explore a wide range of culinary options.
+This is a web application built with React that allows users to browse and search for food recipes. Users can view recipe details, the recipes to cook that meal, ingredients and instructions how to cook a meal, as well as explore a wide range of culinary options.
 
 ## Features
 - Browse a collection of food recipes.
 - Search for recipes based on keywords or ingredients.
-- View detailed information about each recipe, including ingredients, instructions, and cooking time.
-- Save favorite recipes for future reference.
+- View detailed information about each recipe, including ingredients,      instructions, and cooking style.
+- mind you, as a user, you are eligible to add your own recipe, and you can update and aswell delete an added recipe, this is so because the API used does not allow any operations on its recipes.
+- To see the dropdown to add a recipe, click on the details of any of meals and a dropdown will be displayed by the right side of the application where your will see the add, update and delete form options
 - Responsive design for optimal viewing on different devices.
 
 ### Installation
@@ -22,24 +23,9 @@ This is a web application built with React that allows users to browse and searc
 ### Technologies Used
 - React: JavaScript library for building user interfaces.
 - HTML5 & CSS3: Markup and styling of the web application.
-- React Router - Declarative routing for React applications.
 - CSS - Styling and layout of the app.
 - API - Integration with a food recipe API to fetch recipe data.
 
-### Directory structure
-  
-├── src/
-│   ├── components/
-│   │   ├── SearchBar.jsx
-│   │   ├── RecipeCard.jsx
-│   │   |---Ingredient.jsx
-│   │   
-│   ├── App.jsx
-│   ├── App.css
-│   
-├── .gitignore
-├── package.json
-├── README.md
 
 ### Contact
 - If you have any questions or suggestions, feel free to reach out to the project maintainer:
