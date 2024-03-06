@@ -1,7 +1,205 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+* {
+  font-family: Arial, Arial, Helvetica, sans-serif;
+  box-sizing: border-box;
+  padding: 0;
+}
+
+.container {
+  background-color: #fff;
+  margin: 30px auto;
+  border-radius: 20px;
+  padding: 10px;
+}
+
+h2 {
   text-align: center;
 }
 
+.recipes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 20px;
+  border: 2px solid orange;
+}
+
+form {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+input {
+  border: 1px solid;
+  padding: 10px;
+  font-size: 16px;
+}
+
+input:focus {
+  outline: none;
+}
+
+.form-control {
+  border-top-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  width: 400px;
+}
+
+.btn {
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  cursor: pointer;
+}
+
+.card {
+  width: 200px;
+  background-color: #fff;
+  margin: 10px;
+  border: 5px;
+  padding-bottom: 10px;
+}
+
+.card-image {
+  width: 100%;
+  border: 2px solid orange;
+  border-radius: 10px;
+}
+
+.card-body {
+  padding: 10px;
+  text-align: center;
+  background-color: lemonchiffon;
+  border: 1px solid teal;
+  border-radius: 4px;
+}
+
+.category {
+  color: #000;
+}
+
+a {
+  background-color: #ffa500;
+  color: #fff;
+  padding: 10px;
+  border-radius: 10px;
+  text-decoration: none;
+}
+
+.dialog {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 400px;
+  height: 100vh;
+  background-color: white;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  z-index: 9999;
+  overflow-y: auto;
+}
+
+.dialog h4 {
+  margin-top: 0;
+}
+
+.dialog p {
+  margin-bottom: 20px;
+}
+
+.close-dialog-button {
+  display: block;
+  margin: 20px;
+  padding: 10px 20px;
+  background-color: #333;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.close-dialog-button:hover {
+  background-color: #555;
+}
+
+@media screen and (max-width: 600px) {
+  .dialog {
+    width: 100%;
+    font-size: 8px;
+  }
+
+  .dialog p {
+    margin: 10px 15px;
+  }
+
+  .dialog h4 {
+    margin-top: 0;
+    font-size: 15px;
+  }
+
+  .close-dialog-button {
+    display: block;
+    margin: 20px;
+  }
+
+  .container {
+   width: auto;
+    border-radius: 10px;
+    padding: 5px;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+  
+  .recipes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 2px auto;
+  }
+  
+  form {
+    width: 100px;
+    justify-content: center;
+    margin: auto;
+  }
+  
+  input {
+    border: 1px solid;
+    padding: 5px;
+    font-size: 10px;
+    justify-content: center;
+    margin: 10px 2px;
+  }
+
+  .btn {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    cursor: pointer;
+  }
+
+  .card {
+    text-align: center;
+  }
+  
+  .card-image {
+    width: 100%;
+  }
+  
+  .card-body {
+    padding: 0px;
+    text-align: center;
+  }
+
+  .category {
+    font-size: 12px;
+  }
+  
+  a {
+    background-color: #ffa500;
+    color: #fff;
+    padding: 8px;
+    font-size: 12px;
+  }
+}
+
+/* adding styles for home */
