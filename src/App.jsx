@@ -5,8 +5,6 @@ import Home from "./components/home"
 import RecipeCard from "./components/recipe-card";
 import { useAppContext } from "./context/AppContext";
 
-// import UpdateRecipe from "./components/update-recipe";
-// import DeleteRecipe from "./components/delete-recipe";
 
 function App() {
     const { recipes, setAddedRecipes } = useAppContext();
@@ -39,11 +37,6 @@ function App() {
                         </>
                     )}
                 </div>
-{/* 
-                <RecipeProvider>
-                    <UpdateRecipe />
-                    <DeleteRecipe />
-                </RecipeProvider>, */}
             </div>
         </>
     );

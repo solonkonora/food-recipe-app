@@ -147,6 +147,7 @@ const RecipeCard = ({
   };
 
   return (
+    <>
     <div className="card">
       <img src={strMealThumb} alt={strMeal} className="card-image" />
       <div className="card-body">
@@ -181,19 +182,25 @@ const RecipeCard = ({
           </button>
         </div>
       )}
+
+
       {/* Display newly added recipes */}
-      <div className="new-recipes">
-        <h4>Newly Added Recipes</h4>
+      {/* <div className="new-recipes">
+        <h4>Newly Added Recipes</h4> */}
         {/* Iterate over the newly added recipes and display them */}
-        {localStorage.getItem("recipes") && (
+        {/* {localStorage.getItem("recipes") && (
           <ul>
-            {JSON.parse(localStorage.getItem("recipes")).map((recipe, index) => (
-              <li key={index}>{recipe.strMeal}</li>
+            {JSON.parse(localStorage.getItem("recipes")).map((recipe, name) => (
+              <li key={name}>{recipe.strMeal}</li>
             ))}
           </ul>
         )}
-      </div>
+      </div> */}
     </div>
+{/* <div>
+<AddRecipe/>
+</div> */}
+</>
   );
 };
 

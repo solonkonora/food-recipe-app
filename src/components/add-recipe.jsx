@@ -96,10 +96,11 @@ const AddRecipe = ({ onAddRecipe }) => {
             onChange={handleChange}
             className="add-recipe-input"
           />
-        </label>
-        {recipe.image && (
+        </label> 
+         {recipe.image && (
           <img src={recipe.image} alt="Selected" /> // Use the stored image URL from the recipe state
         )}
+
         <br />
         <button type="submit" className="add-recipe-button">
           Add Recipe
