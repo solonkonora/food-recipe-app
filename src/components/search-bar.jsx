@@ -7,6 +7,7 @@ const SearchBar = () => {
   const { searchRecipes } = useAppContext();
 
   const [query, setQuery] = useState("");
+  const [error, setError] = useState(null);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -23,8 +24,13 @@ const SearchBar = () => {
 
     const trimmedQuery = query.trim();
 
+    setError(null);
+
     const intId = setTimeout(() => {
-      searchRecipes(trimmedQuery);
+      searchRecipes(trimmedQuery)
+        .catch((error) => {
+          setError(error.message);
+        });
     }, 1000);
 
     return () => {
@@ -41,7 +47,7 @@ const SearchBar = () => {
         placeholder="Search Recipes"
         className="form-control"
       />
-      <input type="submit" className="btn" value="Search" />
+      {error && <p>Error: {error}</p>}
     </form>
   );
 };

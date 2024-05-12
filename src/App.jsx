@@ -10,12 +10,12 @@ function App() {
     const { recipes, setAddedRecipes } = useAppContext();
 
     //Retrieve added recipes from local storage
-    useEffect(() => {
-        const savedRecipes = localStorage.getItem("recipes");
-        if (savedRecipes) {
-            setAddedRecipes(JSON.parse(savedRecipes));
-        }
-    }, []);
+    // useEffect(() => {
+    //     const savedRecipes = localStorage.getItem("recipes");
+    //     if (savedRecipes) {
+    //         setAddedRecipes(JSON.parse(savedRecipes));
+    //     }
+    // }, []);
 
     return (
         <>

@@ -1,105 +1,56 @@
 // import React, { useState } from "react";
 // import PropTypes from "prop-types";
-// import AddRecipe from "./add-recipe";
-// import UpdateRecipe from "./update-recipe";
-// import DeleteRecipe from "./delete-recipe";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faHeart } from "@fortawesome/free-solid-svg-icons";
+// import 'font-awesome/css/font-awesome.min.css';
+// import "../assets/styles/recipe-card.css";
 
-// const RecipeCard = ({
-//   recipe,
-//   recipeName,
-//   onUpdateRecipe,
-//   onDeleteRecipe,
-//   onAddRecipe
-// }) => {
+// const RecipeCard = ({ recipe, recipeName }) => {
 //   const { idMeal, strMeal, strMealThumb, strCategory, strInstructions } = recipe;
 //   const [dialogOpen, setDialogOpen] = useState(false);
+//   const [isFavorite, setIsFavorite] = useState(false);
 
 //   const handleDialogToggle = () => {
 //     setDialogOpen(!dialogOpen);
 //   };
 
-//   const handleAddRecipe = (newRecipe) => {
-//     onAddRecipe(newRecipe);
-
-//     // Retrieve existing recipes from local storage
-//     const existingRecipes = localStorage.getItem("recipes");
-//     let recipesArray = [];
-
-//     if (existingRecipes) {
-//       recipesArray = JSON.parse(existingRecipes);
-//     }
-
-//     // Add the new recipe to the recipes array
-//     recipesArray.push(newRecipe);
-
-//     // Save the updated recipes array back to local storage
-//     localStorage.setItem("recipes", JSON.stringify(recipesArray));
-//   };
-
-//   const handleUpdateRecipe = (updatedRecipe) => {
-//     onUpdateRecipe(updatedRecipe);
-//     setDialogOpen(false);
-//   };
-
-//   const handleDeleteRecipe = () => {
-//     onDeleteRecipe(idMeal);
+//   const handleToggleFavorite = () => {
+//     setIsFavorite(!isFavorite);
 //   };
 
 //   return (
 //     <>
-//     <div className="card">
-//       <img src={strMealThumb} alt={strMeal} className="card-image" />
-//       <div className="card-body">
-//         <span className="category">{strCategory}</span>
-//         <h3>{recipeName}</h3>
-//         <button className="details-button" onClick={handleDialogToggle}>
-//           Details
-//         </button>
-//       </div>
-//       {dialogOpen && (
-//         <div className="dialog">
-//           <h4>Recipe Details</h4>
-//           <p>
-//             <strong>Name:</strong> {strMeal}
-//           </p>
-//           <p>
-//             <strong>Instructions:</strong> {strInstructions}
-//           </p>
-//           <div className="dialog-buttons">
-//             <AddRecipe onAddRecipe={handleAddRecipe} />
-//             <UpdateRecipe
-//               onUpdateRecipe={handleUpdateRecipe}
-//               recipeToUpdate={recipe}
-//             />
-//             <DeleteRecipe
-//               recipeToDelete={recipe}
-//               onDeleteRecipe={handleDeleteRecipe}
-//             />
-//           </div>
-//           <button className="close-dialog-button" onClick={handleDialogToggle}>
-//             Close
+//       <div className="card">
+//         <div
+//           className={`favorite-icon ${isFavorite ? 'favorite' : ''}`}
+//           onClick={handleToggleFavorite}
+//         >
+//           <FontAwesomeIcon icon={faHeart} />
+//         </div>
+//         <img src={strMealThumb} alt={strMeal} className="card-image" />
+//         <div className="card-body">
+//           <span className="category">{strCategory}</span>
+//           <h3>{recipeName}</h3>
+//           <button className="details-button" onClick={handleDialogToggle}>
+//             Details
 //           </button>
 //         </div>
-//       )}
-
-
-//       {/* Display newly added recipes */}
-//       {/* <div className="new-recipes">
-//         <h4>Newly Added Recipes</h4> */}
-//         {/* Iterate over the newly added recipes and display them */}
-//         {/* {localStorage.getItem("recipes") && (
-//           <ul>
-//             {JSON.parse(localStorage.getItem("recipes")).map((recipe, name) => (
-//               <li key={name}>{recipe.strMeal}</li>
-//             ))}
-//           </ul>
+//         {dialogOpen && (
+//           <div className="dialog">
+//             <h4>Recipe Details</h4>
+//             <p>
+//               <strong>Name:</strong> {strMeal}
+//             </p>
+//             <p>
+//               <strong>Instructions:</strong> {strInstructions}
+//             </p>
+//             <button className="close-dialog-button" onClick={handleDialogToggle}>
+//               Close
+//             </button>
+//           </div>
 //         )}
-//       </div> */}
-//     </div>
-// {/* <div>
-// <AddRecipe/>
-// </div> */}
-// </>
+//       </div>
+//     </>
 //   );
 // };
 
@@ -112,68 +63,66 @@
 //     strInstructions: PropTypes.string
 //   }),
 //   recipeName: PropTypes.string.isRequired,
-//   onUpdateRecipe: PropTypes.func.isRequired,
-//   onDeleteRecipe: PropTypes.func.isRequired,
-//   onAddRecipe: PropTypes.func.isRequired
 // };
 
 // export default RecipeCard;
 
 
-import React, { useState } from "react";
-import PropTypes from "prop-types";
-import AddRecipe from "./add-recipe";
-import UpdateRecipe from "./update-recipe";
-import DeleteRecipe from "./delete-recipe";
 
-const RecipeCard = ({
-  recipe,
-  recipeName,
-  onUpdateRecipe,
-  onDeleteRecipe,
-  onAddRecipe
-}) => {
+
+
+import React, { useState, useEffect } from "react";
+import PropTypes from "prop-types";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import { faHeart as faHeartRegular } from "@fortawesome/free-regular-svg-icons";
+import "@fortawesome/fontawesome-svg-core/styles.css";
+import 'font-awesome/css/font-awesome.min.css';
+import "../assets/styles/recipe-card.css";
+
+const RecipeCard = ({ recipe, recipeName }) => {
   const { idMeal, strMeal, strMealThumb, strCategory, strInstructions } = recipe;
   const [dialogOpen, setDialogOpen] = useState(false);
-  const [newlyAddedRecipes, setNewlyAddedRecipes] = useState([]);
+  const [isFavorite, setIsFavorite] = useState(false);
+
+  useEffect(() => {
+    // Check if the recipe is marked as a favorite in localStorage
+    const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+    setIsFavorite(favorites.includes(idMeal));
+  }, [idMeal]);
 
   const handleDialogToggle = () => {
     setDialogOpen(!dialogOpen);
   };
 
-  const handleAddRecipe = (newRecipe) => {
-    onAddRecipe(newRecipe);
+  const handleToggleFavorite = () => {
+    const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+    const updatedFavorites = [...favorites];
 
-    // Retrieve existing recipes from local storage
-    const existingRecipes = localStorage.getItem("recipes");
-    let recipesArray = [];
-
-    if (existingRecipes) {
-      recipesArray = JSON.parse(existingRecipes);
+    if (isFavorite) {
+      // Remove the recipe from favorites
+      const index = updatedFavorites.indexOf(idMeal);
+      if (index !== -1) {
+        updatedFavorites.splice(index, 1);
+      }
+    } else {
+      // Add the recipe to favorites
+      updatedFavorites.push(idMeal);
     }
 
-    // Add the new recipe to the recipes array
-    recipesArray.push(newRecipe);
-
-    // Save the updated recipes array back to local storage
-    localStorage.setItem("recipes", JSON.stringify(recipesArray));
-
-    // Update the state to display the newly added recipes
-    setNewlyAddedRecipes(recipesArray);
-  };
-
-  const handleUpdateRecipe = (updatedRecipe) => {
-    onUpdateRecipe(updatedRecipe);
-    setDialogOpen(false);
-  };
-
-  const handleDeleteRecipe = () => {
-    onDeleteRecipe(idMeal);
+    localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
+    setIsFavorite(!isFavorite);
   };
 
   return (
     <>
       <div className="card">
+        <div
+          className={`favorite-icon ${isFavorite ? 'favorite' : ''}`}
+          onClick={handleToggleFavorite}
+        >
+          <FontAwesomeIcon icon={isFavorite ? faHeart : faHeartRegular} />
+        </div>
         <img src={strMealThumb} alt={strMeal} className="card-image" />
         <div className="card-body">
           <span className="category">{strCategory}</span>
@@ -191,35 +140,12 @@ const RecipeCard = ({
             <p>
               <strong>Instructions:</strong> {strInstructions}
             </p>
-            <div className="dialog-buttons">
-              <AddRecipe onAddRecipe={handleAddRecipe} />
-              <UpdateRecipe
-                onUpdateRecipe={handleUpdateRecipe}
-                recipeToUpdate={recipe}
-              />
-              <DeleteRecipe
-                recipeToDelete={recipe}
-                onDeleteRecipe={handleDeleteRecipe}
-              />
-            </div>
             <button className="close-dialog-button" onClick={handleDialogToggle}>
               Close
             </button>
           </div>
         )}
       </div>
-
-      {/* Display newly added recipes */}
-      {newlyAddedRecipes.length > 0 && (
-        <div className="new-recipes">
-          <h4>Newly Added Recipes</h4>
-          <ul>
-            {newlyAddedRecipes.map((recipe, index) => (
-              <li key={index}>{recipe.strMeal}</li>
-            ))}
-          </ul>
-        </div>
-      )}
     </>
   );
 };
@@ -233,9 +159,33 @@ RecipeCard.propTypes = {
     strInstructions: PropTypes.string
   }),
   recipeName: PropTypes.string.isRequired,
-  onUpdateRecipe: PropTypes.func.isRequired,
-  onDeleteRecipe: PropTypes.func.isRequired,
-  onAddRecipe: PropTypes.func.isRequired,
+};
+
+const FavoriteRecipes = () => {
+  const [favoriteRecipes, setFavoriteRecipes] = useState([]);
+
+  useEffect(() => {
+    const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+    setFavoriteRecipes(favorites);
+  }, []);
+
+  return (
+    <div>
+      <h2>Favorite Recipes</h2>
+      {favoriteRecipes.length > 0 ? (
+        <div className="favorite-recipes">
+          {favoriteRecipes.map(recipeId => (
+            <div key={recipeId}>
+              {/* Fetch the recipe details based on recipeId */}
+              {/* Provide the recipe name */}
+            </div>
+          ))}
+        </div>
+      ) : (
+        <p>No favorite recipes found.</p>
+      )}
+    </div>
+  );
 };
 
 export default RecipeCard;

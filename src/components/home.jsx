@@ -16,16 +16,16 @@ return (
       <p className="more">More</p>
     </div>
 
-    <div className="nums-texts">
+    {/* <div className="nums-texts">
       <div className="num-text">
         <h2 className="section-num">4.8</h2>
         <p className="section-texts">Rating on App store</p>
-      </div>
+      </div> */}
       {/* <div className="num-text">
         <h2 className="section-num">700k</h2>
         <p className="section-texts">Active hours</p>
       </div> */}
-    </div>
+    {/* </div> */}
   </div>
 
 </div>
