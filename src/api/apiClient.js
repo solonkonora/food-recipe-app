@@ -93,6 +93,11 @@ export async function checkFavorite(recipeId) {
   return request(`/favorites/check/${recipeId}`, { method: 'GET' });
 }
 
+// Instructions endpoints
+export async function getInstructions(recipeId) {
+  return request(`/instructions/${recipeId}`, { method: 'GET' });
+}
+
 export default { 
   getRecipes, 
   getRecipe, 
@@ -106,5 +111,6 @@ export default {
   getFavorites,
   addFavorite,
   removeFavorite,
-  checkFavorite
+  checkFavorite,
+  getInstructions
 };

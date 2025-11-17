@@ -13,6 +13,8 @@ const RecipeCard = ({ recipe, recipeName }) => {
   const [dialogOpen, setDialogOpen] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
   const [checkingFavorite, setCheckingFavorite] = useState(true);
+  const [instructions, setInstructions] = useState([]);
+  const [loadingInstructions, setLoadingInstructions] = useState(false);
 
   useEffect(() => {
     // Check if the recipe is favorited via backend
@@ -32,7 +34,20 @@ const RecipeCard = ({ recipe, recipeName }) => {
     }
   }, [id]);
 
-  const handleDialogToggle = () => {
+  const handleDialogToggle = async () => {
+    if (!dialogOpen) {
+      // Fetch instructions when opening dialog
+      setLoadingInstructions(true);
+      try {
+        const instructionsData = await api.getInstructions(id);
+        setInstructions(instructionsData || []);
+      } catch (err) {
+        console.error("Error fetching instructions:", err);
+        setInstructions([]);
+      } finally {
+        setLoadingInstructions(false);
+      }
+    }
     setDialogOpen(!dialogOpen);
   };
 
@@ -77,6 +92,28 @@ const RecipeCard = ({ recipe, recipeName }) => {
             <p>
               <strong>Description:</strong> {description}
             </p>
+            
+            <div style={{ marginTop: '1.5rem' }}>
+              <h5 style={{ marginBottom: '1rem', color: '#ea580c' }}>
+                Step-by-Step Instructions
+              </h5>
+              {loadingInstructions ? (
+                <p style={{ fontStyle: 'italic', color: '#666' }}>Loading instructions...</p>
+              ) : instructions.length > 0 ? (
+                <ol style={{ paddingLeft: '1.5rem', lineHeight: '1.8' }}>
+                  {instructions.map((instruction) => (
+                    <li key={instruction.id} style={{ marginBottom: '0.75rem' }}>
+                      {instruction.description}
+                    </li>
+                  ))}
+                </ol>
+              ) : (
+                <p style={{ fontStyle: 'italic', color: '#666' }}>
+                  No instructions available for this recipe.
+                </p>
+              )}
+            </div>
+            
             <button className="close-dialog-button" onClick={handleDialogToggle}>
               Close
             </button>
