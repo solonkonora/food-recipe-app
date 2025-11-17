@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import { useAppContext } from "../context/AppContext";
+// import "../assets/styles/search-bar.css";
 
-const apiUrl = "https://www.themealdb.com/api/json/v1/1/search.php?s=";
+
+// const apiUrl = "https://www.themealdb.com/api/json/v1/1/search.php?s=";
 
 const SearchBar = () => {
   const { searchRecipes } = useAppContext();
-
   const [query, setQuery] = useState("");
   const [error, setError] = useState(null);
 
@@ -40,6 +41,9 @@ const SearchBar = () => {
   }, [query, searchRecipes]);
 
   return (
+    <>
+    <h2>Tasty Recipes</h2>
+   
     <form onSubmit={handleSubmit}>
       <input
         value={query}
@@ -49,6 +53,7 @@ const SearchBar = () => {
       />
       {error && <p>Error: {error}</p>}
     </form>
+    </>
   );
 };
 
