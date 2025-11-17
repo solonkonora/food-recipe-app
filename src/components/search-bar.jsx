@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useAppContext } from "../context/AppContext";
-// import "../assets/styles/search-bar.css";
+import "../assets/styles/search-bar.css";
 
 
 // const apiUrl = "https://www.themealdb.com/api/json/v1/1/search.php?s=";
@@ -41,19 +41,19 @@ const SearchBar = () => {
   }, [query, searchRecipes]);
 
   return (
-    <>
-    <h2>Tasty Recipes</h2>
+    <div className="search-section">
+      <h2 className="search-title">🍴 Tasty Cameroonian Recipes</h2>
    
-    <form onSubmit={handleSubmit}>
-      <input
-        value={query}
-        onChange={(e) => setQuery(e.target.value)}
-        placeholder="Search Recipes"
-        className="form-control"
-      />
-      {error && <p>Error: {error}</p>}
-    </form>
-    </>
+      <form onSubmit={handleSubmit} className="search-form">
+        <input
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          placeholder="Search for your favorite recipes..."
+          className="form-control"
+        />
+      </form>
+      {error && <p className="search-error">Error: {error}</p>}
+    </div>
   );
 };
 

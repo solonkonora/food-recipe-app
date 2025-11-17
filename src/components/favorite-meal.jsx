@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
+import { Heart, Trash2 } from "lucide-react";
 import api from "../api/apiClient";
+import "../assets/styles/favorites.css";
 
 const FavoriteRecipes = () => {
     const [favorites, setFavorites] = useState([]);
@@ -33,29 +35,63 @@ const FavoriteRecipes = () => {
 
     if (loading) {
         return (
-            <div>
-                <h2>Favorite Recipes</h2>
-                <p>Loading favorites...</p>
+            <div className="favorites-container">
+                <div className="favorites-header">
+                    <Heart size={28} color="#dc2626" fill="#dc2626" />
+                    <h2 className="favorites-title">My Favorite Recipes</h2>
+                </div>
+                <div className="favorites-loading-container">
+                    <div className="favorites-spinner"></div>
+                    <p className="favorites-loading-text">Loading your favorites...</p>
+                </div>
             </div>
         );
     }
 
     return (
-        <div>
-            <h2>Favorite Recipes</h2>
+        <div className="favorites-container">
+            <div className="favorites-header">
+                <Heart size={28} color="#dc2626" fill="#dc2626" />
+                <h2 className="favorites-title">My Favorite Recipes</h2>
+            </div>
             {favorites.length === 0 ? (
-                <p>No favorite recipes found.</p>
+                <div className="favorites-empty-state">
+                    <Heart size={64} color="#d1d5db" strokeWidth={1} />
+                    <p className="favorites-empty-text">No favorite recipes yet.</p>
+                    <p className="favorites-empty-subtext">
+                        Start adding recipes to your favorites by clicking the heart icon!
+                    </p>
+                </div>
             ) : (
-                <div className="favorite-recipes">
+                <div className="favorites-grid">
                     {favorites.map((recipe) => (
-                        <div key={recipe.id}>
-                            <h3>{recipe.title}</h3>
-                            {recipe.image_path && (
-                                <img src={recipe.image_path} alt={recipe.title} style={{width:120}} />
-                            )}
-                            <button onClick={() => removeFavorite(recipe.id)}>
-                                Remove from Favorites
-                            </button>
+                        <div key={recipe.id} className="favorite-recipe-card">
+                            <div className="favorite-recipe-image-container">
+                                {recipe.image_path && (
+                                    <img 
+                                        src={recipe.image_path} 
+                                        alt={recipe.title} 
+                                        className="favorite-recipe-image"
+                                    />
+                                )}
+                            </div>
+                            <div className="favorite-recipe-body">
+                                <h3 className="favorite-recipe-title">{recipe.title}</h3>
+                                {recipe.description && (
+                                    <p className="favorite-recipe-description">
+                                        {recipe.description.length > 80 
+                                            ? `${recipe.description.substring(0, 80)}...` 
+                                            : recipe.description}
+                                    </p>
+                                )}
+                                <button 
+                                    onClick={() => removeFavorite(recipe.id)}
+                                    className="favorite-remove-button"
+                                >
+                                    <Trash2 size={16} />
+                                    <span>Remove</span>
+                                </button>
+                            </div>
                         </div>
                     ))}
                 </div>

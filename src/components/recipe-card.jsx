@@ -93,22 +93,20 @@ const RecipeCard = ({ recipe, recipeName }) => {
               <strong>Description:</strong> {description}
             </p>
             
-            <div style={{ marginTop: '1.5rem' }}>
-              <h5 style={{ marginBottom: '1rem', color: '#ea580c' }}>
-                Step-by-Step Instructions
-              </h5>
+            <div>
+              <h5>Step-by-Step Instructions</h5>
               {loadingInstructions ? (
-                <p style={{ fontStyle: 'italic', color: '#666' }}>Loading instructions...</p>
+                <p style={{ fontStyle: 'italic', color: '#6b7280' }}>Loading instructions...</p>
               ) : instructions.length > 0 ? (
-                <ol style={{ paddingLeft: '1.5rem', lineHeight: '1.8' }}>
+                <ol>
                   {instructions.map((instruction) => (
-                    <li key={instruction.id} style={{ marginBottom: '0.75rem' }}>
+                    <li key={instruction.id}>
                       {instruction.description}
                     </li>
                   ))}
                 </ol>
               ) : (
-                <p style={{ fontStyle: 'italic', color: '#666' }}>
+                <p style={{ fontStyle: 'italic', color: '#6b7280' }}>
                   No instructions available for this recipe.
                 </p>
               )}

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import SearchBar from "./components/search-bar";
-import Home from "./components/home";
+// import Home from "./components/home";
 import RecipeCard from "./components/recipe-card";
 import FavoriteRecipes from "./components/favorite-meal";
 import AuthPage from "./components/AuthPage";
@@ -24,8 +24,8 @@ export default function App() {
     // Show loading while checking auth
     if (authLoading) {
         return (
-            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100vh' }}>
-                <p>Loading...</p>
+            <div className="loading-container">
+                <p className="loading-text">Loading...</p>
             </div>
         );
     }
@@ -43,13 +43,12 @@ export default function App() {
     // Show recipe dashboard for authenticated users
     return (
         <>
-           <Home />
             <div className="container">
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
-                    <h2>Tasty Recipes</h2>
-                    <div>
-                        <span style={{ marginRight: '1rem' }}>Welcome, {user.email}</span>
-                        <button onClick={logout} style={{ padding: '0.5rem 1rem', cursor: 'pointer' }}>
+                <div className="app-header">
+                    <h2>🍽️ LocalBite</h2>
+                    <div className="user-section">
+                        <span className="user-welcome">Welcome, {user.username || user.email}!</span>
+                        <button onClick={logout} className="logout-button">
                             Logout
                         </button>
                     </div>
@@ -57,7 +56,7 @@ export default function App() {
                 <SearchBar />
 
                 <div className="recipes">
-                    {isLoading && <p>Loading...</p>}
+                    {isLoading && <p className="loading-text">Loading recipes...</p>}
                     {!isLoading && recipes && recipes.length > 0 ? (
                         recipes.map((recipe) => (
                             <RecipeCard
@@ -67,7 +66,7 @@ export default function App() {
                             />
                         ))
                     ) : (
-                        !isLoading && <p>No recipes found.</p>
+                        !isLoading && <p className="empty-state">No recipes found.</p>
                     )}
                 </div>
             </div>
