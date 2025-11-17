@@ -1,9 +1,9 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
 import { useAuth } from "../context/AuthContext";
-import { Eye, EyeOff } from "lucide-react";
+import { Eye, EyeOff, ArrowLeft } from "lucide-react";
 
-export default function Signup({ onSwitchToLogin }) {
+export default function Signup({ onSwitchToLogin, onBack }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -36,6 +36,12 @@ export default function Signup({ onSwitchToLogin }) {
   return (
     <div style={styles.container}>
       <div style={styles.card}>
+        {onBack && (
+          <button onClick={onBack} style={styles.backButton} aria-label="Go back">
+            <ArrowLeft size={20} />
+            <span style={{ marginLeft: '0.5rem' }}>Back</span>
+          </button>
+        )}
         <h2 style={styles.title}>Sign Up for LocalBite</h2>
         <form onSubmit={handleSubmit} style={styles.form}>
           {error && <div style={styles.error}>{error}</div>}
@@ -65,14 +71,24 @@ export default function Signup({ onSwitchToLogin }) {
 
           <div style={styles.inputGroup}>
             <label style={styles.label}>Password</label>
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-              style={styles.input}
-              placeholder="Enter your password (min 6 characters)"
-            />
+            <div style={styles.passwordContainer}>
+              <input
+                type={showPassword ? "text" : "password"}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                style={styles.passwordInput}
+                placeholder="Enter your password (min 6 characters)"
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                style={styles.eyeButton}
+                aria-label="Toggle password visibility"
+              >
+                {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+              </button>
+            </div>
           </div>
 
           <button type="submit" disabled={loading} style={styles.button}>
@@ -93,6 +109,7 @@ export default function Signup({ onSwitchToLogin }) {
 
 Signup.propTypes = {
   onSwitchToLogin: PropTypes.func.isRequired,
+  onBack: PropTypes.func,
 };
 
 const styles = {
@@ -110,6 +127,22 @@ const styles = {
     boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
     width: "100%",
     maxWidth: "400px",
+    position: "relative",
+  },
+  backButton: {
+    position: "absolute",
+    top: "1rem",
+    left: "1rem",
+    display: "flex",
+    alignItems: "center",
+    backgroundColor: "transparent",
+    border: "none",
+    color: "#374151",
+    cursor: "pointer",
+    fontSize: "0.875rem",
+    padding: "0.5rem",
+    borderRadius: "4px",
+    transition: "background-color 0.2s",
   },
   title: {
     textAlign: "center",
@@ -139,6 +172,32 @@ const styles = {
     borderRadius: "4px",
     fontSize: "1rem",
     outline: "none",
+  },
+  passwordContainer: {
+    position: "relative",
+    display: "flex",
+    alignItems: "center",
+  },
+  passwordInput: {
+    padding: "0.75rem",
+    paddingRight: "2.5rem",
+    border: "1px solid #ddd",
+    borderRadius: "4px",
+    fontSize: "1rem",
+    outline: "none",
+    width: "100%",
+  },
+  eyeButton: {
+    position: "absolute",
+    right: "0.75rem",
+    background: "none",
+    border: "none",
+    cursor: "pointer",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    padding: "0",
+    color: "#666",
   },
   button: {
     padding: "0.75rem",

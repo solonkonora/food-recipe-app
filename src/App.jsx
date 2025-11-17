@@ -1,19 +1,22 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import SearchBar from "./components/search-bar";
 import Home from "./components/home";
 import RecipeCard from "./components/recipe-card";
 import FavoriteRecipes from "./components/favorite-meal";
 import AuthPage from "./components/AuthPage";
+import Welcome from "./components/Welcome";
 import { useAppContext } from "./context/AppContext";
 import { useAuth } from "./context/AuthContext";
 
 export default function App() {
     const { recipes, isLoading, fetchRecipes } = useAppContext();
     const { user, loading: authLoading, logout } = useAuth();
+    const [showWelcome, setShowWelcome] = useState(true);
 
     useEffect(() => {
         if (user) {
+            setShowWelcome(false);
             fetchRecipes();
         }
     }, [fetchRecipes, user]);
@@ -27,9 +30,14 @@ export default function App() {
         );
     }
 
+    // Show welcome page for first-time visitors
+    if (!user && showWelcome) {
+        return <Welcome onGetStarted={() => setShowWelcome(false)} />;
+    }
+
     // Show auth page if not logged in
     if (!user) {
-        return <AuthPage />;
+        return <AuthPage onBack={() => setShowWelcome(true)} />;
     }
 
     // Show recipe dashboard for authenticated users

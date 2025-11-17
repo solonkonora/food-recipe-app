@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import PropTypes from "prop-types";
-import { Eye, EyeOff } from "lucide-react";
+import { Eye, EyeOff, ArrowLeft } from "lucide-react";
 
-export default function Login({ onSwitchToSignup }) {
+export default function Login({ onSwitchToSignup, onBack }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -29,6 +29,12 @@ export default function Login({ onSwitchToSignup }) {
   return (
     <div style={styles.container}>
       <div style={styles.card}>
+        {onBack && (
+          <button onClick={onBack} style={styles.backButton} aria-label="Go back">
+            <ArrowLeft size={20} />
+            <span style={{ marginLeft: '0.5rem' }}>Back</span>
+          </button>
+        )}
         <h2 style={styles.title}>Login to LocalBite</h2>
         <form onSubmit={handleSubmit} style={styles.form}>
           {error && <div style={styles.error}>{error}</div>}
@@ -85,6 +91,7 @@ export default function Login({ onSwitchToSignup }) {
 
 Login.propTypes = {
   onSwitchToSignup: PropTypes.func.isRequired,
+  onBack: PropTypes.func,
 };
 
 const styles = {
@@ -102,6 +109,22 @@ const styles = {
     boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
     width: "100%",
     maxWidth: "400px",
+    position: "relative",
+  },
+  backButton: {
+    position: "absolute",
+    top: "1rem",
+    left: "1rem",
+    display: "flex",
+    alignItems: "center",
+    backgroundColor: "transparent",
+    border: "none",
+    color: "#374151",
+    cursor: "pointer",
+    fontSize: "0.875rem",
+    padding: "0.5rem",
+    borderRadius: "4px",
+    transition: "background-color 0.2s",
   },
   title: {
     textAlign: "center",
