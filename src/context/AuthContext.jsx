@@ -24,6 +24,16 @@ export function AuthProvider({ children }) {
     };
 
     checkAuth();
+
+    // Handle Google OAuth callback
+    // When user returns from Google, URL will have ?auth=success
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('auth') === 'success') {
+      // Remove the query param
+      window.history.replaceState({}, document.title, window.location.pathname);
+      // Refresh user data
+      checkAuth();
+    }
   }, []);
 
   const signUp = async (email, password, full_name) => {
