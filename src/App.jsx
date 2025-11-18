@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import SearchBar from "./components/search-bar";
-// import Home from "./components/home";
 import RecipeCard from "./components/recipe-card";
 import FavoriteRecipes from "./components/favorite-meal";
 import AuthPage from "./components/AuthPage";

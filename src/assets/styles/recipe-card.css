@@ -121,6 +121,39 @@ body {
   transform: translateY(0);
 }
 
+/* Modal Overlay - Semi-transparent backdrop */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(2px);
+  z-index: 999;
+  animation: fadeIn 0.2s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -45%);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}
+
 /* Dialog/Modal */
 .dialog {
   position: fixed;
@@ -131,12 +164,13 @@ body {
   border: none;
   border-radius: 12px;
   padding: 2rem;
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
   z-index: 1000;
   max-width: 600px;
   max-height: 80vh;
   overflow-y: auto;
   width: 90%;
+  animation: slideIn 0.3s ease-out;
 }
 
 .dialog::backdrop {
@@ -180,6 +214,30 @@ body {
 
 .dialog li {
   margin-bottom: 0.75rem;
+  color: #374151;
+}
+
+/* Ingredients List */
+.ingredients-list {
+  list-style: none;
+  padding-left: 0;
+  line-height: 1.8;
+}
+
+.ingredients-list li {
+  margin-bottom: 0.625rem;
+  padding: 0.5rem;
+  background-color: #f9fafb;
+  border-left: 3px solid #ea580c;
+  border-radius: 4px;
+}
+
+.ingredient-quantity {
+  font-weight: 600;
+  color: #ea580c;
+}
+
+.ingredient-name {
   color: #374151;
 }
 

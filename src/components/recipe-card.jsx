@@ -14,7 +14,9 @@ const RecipeCard = ({ recipe, recipeName }) => {
   const [isFavorite, setIsFavorite] = useState(false);
   const [checkingFavorite, setCheckingFavorite] = useState(true);
   const [instructions, setInstructions] = useState([]);
+  const [ingredients, setIngredients] = useState([]);
   const [loadingInstructions, setLoadingInstructions] = useState(false);
+  const [loadingIngredients, setLoadingIngredients] = useState(false);
 
   useEffect(() => {
     // Check if the recipe is favorited via backend
@@ -36,15 +38,23 @@ const RecipeCard = ({ recipe, recipeName }) => {
 
   const handleDialogToggle = async () => {
     if (!dialogOpen) {
-      // Fetch instructions when opening dialog
+      // Fetch ingredients and instructions when opening dialog
+      setLoadingIngredients(true);
       setLoadingInstructions(true);
+      
       try {
-        const instructionsData = await api.getInstructions(id);
+        const [ingredientsData, instructionsData] = await Promise.all([
+          api.getIngredients(id),
+          api.getInstructions(id)
+        ]);
+        setIngredients(ingredientsData || []);
         setInstructions(instructionsData || []);
       } catch (err) {
-        console.error("Error fetching instructions:", err);
+        console.error("Error fetching recipe details:", err);
+        setIngredients([]);
         setInstructions([]);
       } finally {
+        setLoadingIngredients(false);
         setLoadingInstructions(false);
       }
     }
@@ -67,7 +77,7 @@ const RecipeCard = ({ recipe, recipeName }) => {
 
   return (
     <>
-        <div className="card">
+      <div className="card">
         <div
           className={`favorite-icon ${isFavorite ? 'favorite' : ''}`}
           onClick={handleToggleFavorite}
@@ -83,7 +93,12 @@ const RecipeCard = ({ recipe, recipeName }) => {
             Details
           </button>
         </div>
-        {dialogOpen && (
+      </div>
+
+      {/* Modal Overlay */}
+      {dialogOpen && (
+        <>
+          <div className="modal-overlay" onClick={handleDialogToggle} />
           <div className="dialog">
             <h4>Recipe Details</h4>
             <p>
@@ -92,6 +107,27 @@ const RecipeCard = ({ recipe, recipeName }) => {
             <p>
               <strong>Description:</strong> {description}
             </p>
+            
+            <div>
+              <h5>Ingredients</h5>
+              {loadingIngredients ? (
+                <p style={{ fontStyle: 'italic', color: '#6b7280' }}>Loading ingredients...</p>
+              ) : ingredients.length > 0 ? (
+                <ul className="ingredients-list">
+                  {ingredients.map((ingredient) => (
+                    <li key={ingredient.id}>
+                      <span className="ingredient-quantity">{ingredient.quantity} {ingredient.unit}</span>
+                      {' '}
+                      <span className="ingredient-name">{ingredient.name}</span>
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <p style={{ fontStyle: 'italic', color: '#6b7280' }}>
+                  No ingredients available for this recipe.
+                </p>
+              )}
+            </div>
             
             <div>
               <h5>Step-by-Step Instructions</h5>
@@ -116,8 +152,8 @@ const RecipeCard = ({ recipe, recipeName }) => {
               Close
             </button>
           </div>
-        )}
-      </div>
+        </>
+      )}
     </>
   );
 };

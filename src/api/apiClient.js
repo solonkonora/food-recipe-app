@@ -98,6 +98,11 @@ export async function getInstructions(recipeId) {
   return request(`/instructions/${recipeId}`, { method: 'GET' });
 }
 
+// Ingredients endpoints
+export async function getIngredients(recipeId) {
+  return request(`/ingredients/${recipeId}`, { method: 'GET' });
+}
+
 export default { 
   getRecipes, 
   getRecipe, 
@@ -112,5 +117,6 @@ export default {
   addFavorite,
   removeFavorite,
   checkFavorite,
-  getInstructions
+  getInstructions,
+  getIngredients
 };
