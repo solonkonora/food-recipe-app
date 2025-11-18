@@ -1,15 +1,14 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import SearchBar from "./components/search-bar";
-import RecipeCard from "./components/recipe-card";
-import FavoriteRecipes from "./components/favorite-meal";
+import Tabs from "./components/Tabs";
 import AuthPage from "./components/AuthPage";
 import Welcome from "./components/Welcome";
 import { useAppContext } from "./context/AppContext";
 import { useAuth } from "./context/AuthContext";
 
 export default function App() {
-    const { recipes, isLoading, fetchRecipes } = useAppContext();
+    const { fetchRecipes } = useAppContext();
     const { user, loading: authLoading, logout } = useAuth();
     const [showWelcome, setShowWelcome] = useState(true);
 
@@ -53,25 +52,7 @@ export default function App() {
                     </div>
                 </div>
                 <SearchBar />
-
-                <div className="recipes">
-                    {isLoading && <p className="loading-text">Loading recipes...</p>}
-                    {!isLoading && recipes && recipes.length > 0 ? (
-                        recipes.map((recipe) => (
-                            <RecipeCard
-                                key={recipe.id}
-                                recipe={recipe}
-                                recipeName={recipe.title}
-                            />
-                        ))
-                    ) : (
-                        !isLoading && <p className="empty-state">No recipes found.</p>
-                    )}
-                </div>
-            </div>
-
-            <div className="sidebar">
-                <FavoriteRecipes />
+                <Tabs />
             </div>
         </>
     );

@@ -1,0 +1,138 @@
+.recent-recipes-container {
+  width: 100%;
+}
+
+.recent-recipes-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding: 0 0.5rem;
+}
+
+.recent-recipes-header h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin: 0;
+}
+
+.recipes-count {
+  font-size: 0.95rem;
+  color: #6b7280;
+  font-weight: 500;
+  background-color: #f3f4f6;
+  padding: 0.375rem 0.875rem;
+  border-radius: 20px;
+}
+
+.recent-recipes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+  padding: 0.5rem;
+}
+
+.loading-state {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: #6b7280;
+  font-size: 1.125rem;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 4rem 2rem;
+  background-color: #f9fafb;
+  border-radius: 12px;
+  border: 2px dashed #d1d5db;
+}
+
+.empty-state p {
+  color: #6b7280;
+  font-size: 1.125rem;
+  margin: 0;
+}
+
+@media screen and (min-width: 1400px) {
+  .recent-recipes-grid {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+
+  .recent-recipes-header h2 {
+    font-size: 1.75rem;
+  }
+}
+
+@media screen and (min-width: 1025px) and (max-width: 1399px) {
+  .recent-recipes-grid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .recent-recipes-grid {
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1.25rem;
+  }
+
+  .recent-recipes-header h2 {
+    font-size: 1.375rem;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .recent-recipes-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .recent-recipes-header h2 {
+    font-size: 1.25rem;
+  }
+
+  .recipes-count {
+    font-size: 0.875rem;
+    padding: 0.3rem 0.75rem;
+  }
+
+  .recent-recipes-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 0;
+  }
+
+  .empty-state {
+    padding: 3rem 1.5rem;
+  }
+
+  .empty-state p {
+    font-size: 1rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .recent-recipes-header h2 {
+    font-size: 1.125rem;
+  }
+
+  .recipes-count {
+    font-size: 0.8125rem;
+  }
+
+  .recent-recipes-grid {
+    gap: 0.75rem;
+  }
+
+  .empty-state {
+    padding: 2.5rem 1rem;
+  }
+
+  .empty-state p {
+    font-size: 0.9375rem;
+  }
+}

@@ -105,11 +105,24 @@ function AppContextProvider({ children }) {
         }
     }, []);
 
-    const createRecipe = async (payload) => {
+    const createRecipe = async (payload, ingredients = [], instructions = []) => {
         setIsLoading(true);
         setError(null);
         try {
+            // Create recipe first
             const created = await api.createRecipe(payload);
+            const recipeId = created.id;
+
+            // Create ingredients if provided
+            if (ingredients.length > 0) {
+                await api.createIngredients(recipeId, ingredients);
+            }
+
+            // Create instructions if provided
+            if (instructions.length > 0) {
+                await api.createInstructions(recipeId, instructions);
+            }
+
             // refresh list
             await fetchRecipes();
             return created;

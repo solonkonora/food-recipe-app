@@ -45,6 +45,48 @@ export async function createRecipe(data) {
   return request('/recipes', { method: 'POST', body: data });
 }
 
+export async function createIngredients(recipeId, ingredients) {
+  // create ingredients one by one
+  const results = [];
+  for (const ingredient of ingredients) {
+    const result = await request(`/ingredients/${recipeId}`, {
+      method: 'POST',
+      body: ingredient,
+    });
+    results.push(result);
+  }
+  return results;
+}
+
+export async function createInstructions(recipeId, instructions) {
+  // Backend expects { instructions: [...] }
+  return request(`/instructions/${recipeId}`, {
+    method: 'POST',
+    body: { instructions },
+  });
+}
+
+export async function uploadImage(formData) {
+  const url = `${API_BASE}/recipes/upload-image`;
+  const res = await fetch(url, {
+    method: 'POST',
+    credentials: 'include',
+    body: formData, // Don't set Content-Type, let browser set it with boundary
+  });
+
+  if (!res.ok) {
+    const text = await res.text();
+    let err = text;
+    try { err = JSON.parse(text); } catch (e) { /* ignore */ }
+    const error = new Error('Image upload failed');
+    error.status = res.status;
+    error.response = err;
+    throw error;
+  }
+
+  return res.json();
+}
+
 export async function updateRecipe(id, data) {
   return request(`/recipes/${id}`, { method: 'PUT', body: data });
 }
@@ -53,7 +95,7 @@ export async function deleteRecipe(id) {
   return request(`/recipes/${id}`, { method: 'DELETE' });
 }
 
-// Auth endpoints
+// auth endpoints
 export async function signup(email, password, full_name) {
   return request('/auth/signup', { 
     method: 'POST', 
@@ -76,7 +118,7 @@ export async function getCurrentUser() {
   return request('/auth/me', { method: 'GET' });
 }
 
-// Favorites endpoints
+// favorites endpoints
 export async function getFavorites() {
   return request('/favorites', { method: 'GET' });
 }
@@ -93,12 +135,12 @@ export async function checkFavorite(recipeId) {
   return request(`/favorites/check/${recipeId}`, { method: 'GET' });
 }
 
-// Instructions endpoints
+// instructions endpoints
 export async function getInstructions(recipeId) {
   return request(`/instructions/${recipeId}`, { method: 'GET' });
 }
 
-// Ingredients endpoints
+// ingredients endpoints
 export async function getIngredients(recipeId) {
   return request(`/ingredients/${recipeId}`, { method: 'GET' });
 }
@@ -118,5 +160,8 @@ export default {
   removeFavorite,
   checkFavorite,
   getInstructions,
-  getIngredients
+  getIngredients,
+  createIngredients,
+  createInstructions,
+  uploadImage
 };
