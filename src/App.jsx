@@ -4,6 +4,9 @@ import SearchBar from "./components/search-bar";
 import Tabs from "./components/Tabs";
 import AuthPage from "./components/AuthPage";
 import Welcome from "./components/Welcome";
+import DataDeletion from "./dataDeletion";
+import TermsOfService from "./termsOfService";
+import PrivacyPolicy from "./privacyPolicy";
 import { useAppContext } from "./context/AppContext";
 import { useAuth } from "./context/AuthContext";
 
@@ -12,12 +15,31 @@ export default function App() {
     const { user, loading: authLoading, logout } = useAuth();
     const [showWelcome, setShowWelcome] = useState(true);
 
+    // Check current path for static pages
+    const currentPath = window.location.pathname;
+    const isDataDeletionPage = currentPath === '/data-deletion';
+    const isTermsPage = currentPath === '/terms-of-service';
+    const isPrivacyPage = currentPath === '/privacy-policy';
+
     useEffect(() => {
         if (user) {
             setShowWelcome(false);
             fetchRecipes();
         }
     }, [fetchRecipes, user]);
+
+    // Show static pages if path matches
+    if (isDataDeletionPage) {
+        return <DataDeletion />;
+    }
+
+    if (isTermsPage) {
+        return <TermsOfService />;
+    }
+
+    if (isPrivacyPage) {
+        return <PrivacyPolicy />;
+    }
 
     // Show loading while checking auth
     if (authLoading) {
