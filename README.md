@@ -1,12 +1,12 @@
 # React Profile App
-This is a web application built with React that allows users to browse and search for food recipes. Users can view recipe details, the recipes to cook that meal, ingredients and instructions how to cook a meal, as well as explore a wide range of culinary options.
+This is a web application built with React that allows users to browse and search for food recipes. Users can view recipe details, the recipes to cook that meal, ingredients and instructions how to cook a meal, as well as explore a wide range of Cameroonian dishes.
 
 ## Features
-- Browse a collection of food recipes.
+- Browse a collection of Cameroonian food recipes.
 - Search for recipes based on keywords or ingredients.
 - View detailed information about each recipe, including ingredients,      instructions, and cooking style.
-- mind you, as a user, you are eligible to add your own recipe, and you can update and aswell delete an added recipe, this is so because the API used does not allow any operations on its recipes.
-- To see the dropdown to add a recipe, click on the details of any of meals and a dropdown will be displayed by the right side of the application where your will see the add, update and delete form options
+- as a user you are eligible to add your own recipe, and you can update and aswell delete an added recipe.
+- To see the details to add a recipe, click on the details of any of meals and a dialog box will be displayed on your screen which has all details about a meal.
 - Responsive design for optimal viewing on different devices.
 
 ### Installation
@@ -24,7 +24,7 @@ This is a web application built with React that allows users to browse and searc
 - React: JavaScript library for building user interfaces.
 - HTML5 & CSS3: Markup and styling of the web application.
 - CSS - Styling and layout of the app.
-- API - Integration with a food recipe API to fetch recipe data.
+- API - Integration with a self-build cameroonian food recipe API to fetch, and upload recipe data.
 
 
 ### Contact
