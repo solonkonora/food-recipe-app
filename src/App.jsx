@@ -28,7 +28,7 @@ export default function App() {
         }
     }, [fetchRecipes, user]);
 
-    // Show static pages if path matches
+    // show static pages if path matches
     if (isDataDeletionPage) {
         return <DataDeletion />;
     }
@@ -50,24 +50,26 @@ export default function App() {
         );
     }
 
-    // Show welcome page for first-time visitors
+    // show welcome page for first-time visitors
     if (!user && showWelcome) {
         return <Welcome onGetStarted={() => setShowWelcome(false)} />;
     }
 
-    // Show auth page if not logged in
+    // show auth page if not logged in
     if (!user) {
         return <AuthPage onBack={() => setShowWelcome(true)} />;
     }
 
-    // Show recipe dashboard for authenticated users
+    // show recipe dashboard for authenticated users
     return (
         <>
             <div className="container">
                 <div className="app-header">
                     <h2>🍽️ LocalBite</h2>
                     <div className="user-section">
-                        <span className="user-welcome">Welcome, {user.username || user.email}!</span>
+                        <span className="user-welcome">
+                            Welcome, {user.full_name || user.username || user.email.split('@')[0]}!
+                        </span>
                         <button onClick={logout} className="logout-button">
                             Logout
                         </button>

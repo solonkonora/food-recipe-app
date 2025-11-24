@@ -47,7 +47,7 @@ export function AuthProvider({ children }) {
   const signUp = async (email, password, full_name) => {
     const data = await api.signup(email, password, full_name);
     if (data.token) {
-      localStorage.setItem('authToken', data.token); // Store token
+      localStorage.setItem('authToken', data.token);
     }
     setUser(data.user);
     return data;
@@ -56,7 +56,7 @@ export function AuthProvider({ children }) {
   const signIn = async (email, password) => {
     const data = await api.login(email, password);
     if (data.token) {
-      localStorage.setItem('authToken', data.token); // Store token
+      localStorage.setItem('authToken', data.token);
     }
     setUser(data.user);
     return data;
@@ -64,7 +64,7 @@ export function AuthProvider({ children }) {
 
   const logout = async () => {
     await api.logout();
-    localStorage.removeItem('authToken'); // Clear stored token
+    localStorage.removeItem('authToken');
     setUser(null);
   };
 
