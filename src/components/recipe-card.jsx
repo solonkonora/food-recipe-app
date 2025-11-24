@@ -9,7 +9,7 @@ import api from "../api/apiClient";
 import "../assets/styles/recipe-card.css";
 
 const RecipeCard = ({ recipe, recipeName }) => {
-  const { id, title, image_path, category_id, description } = recipe || {};
+  const { id, title, image_path, description } = recipe || {};
   const [dialogOpen, setDialogOpen] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
   const [checkingFavorite, setCheckingFavorite] = useState(true);
@@ -87,7 +87,6 @@ const RecipeCard = ({ recipe, recipeName }) => {
         </div>
         <img src={image_path} alt={title} className="card-image" />
         <div className="card-body">
-          <span className="category">{category_id}</span>
           <h3>{recipeName || title}</h3>
           <button className="details-button" onClick={handleDialogToggle}>
             Details

@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { Plus, Heart, Clock } from "lucide-react";
+import { Plus, Heart, Clock, UtensilsCrossed } from "lucide-react";
 import AddRecipe from "./AddRecipe";
 import FavoriteRecipes from "./favorite-meal";
 import RecentRecipes from "./RecentRecipes";
+import RecipesByCategory from "./RecipesByCategory";
 import SearchBar from "./search-bar";
 import "../assets/styles/tabs.css";
 
@@ -11,6 +12,7 @@ export default function Tabs() {
 
   const tabs = [
     { id: "recent", label: "Recent", icon: Clock },
+    { id: "recipes", label: "Recipes", icon: UtensilsCrossed },
     { id: "favorites", label: "Favorites", icon: Heart },
     { id: "add", label: "Add Recipe", icon: Plus },
   ];
@@ -19,6 +21,8 @@ export default function Tabs() {
     switch (activeTab) {
       case "recent":
         return <RecentRecipes />;
+      case "recipes":
+        return <RecipesByCategory />;
       case "favorites":
         return <FavoriteRecipes />;
       case "add":

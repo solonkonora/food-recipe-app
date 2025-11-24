@@ -54,7 +54,7 @@ body {
 /* Card Image */
 .card-image {
   width: 100%;
-  height: 200px;
+  height: 320px;
   object-fit: cover;
   transition: transform 0.3s;
 }
@@ -65,29 +65,16 @@ body {
 
 /* Card Body */
 .card-body {
-  padding: 1rem;
+  padding: 1.25rem 1rem;
   text-align: center;
   background-color: rgb(225, 250, 249);
-}
-
-.category {
-  display: inline-block;
-  background-color: #ea580c;
-  color: white;
-  padding: 0.25rem 0.75rem;
-  border-radius: 12px;
-  font-size: 0.75rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  margin-bottom: 0.5rem;
 }
 
 .card-body h3 {
   font-size: 1.125rem;
   font-weight: 600;
   color: #1f2937;
-  margin: 0.75rem 0;
+  margin: 0 0 1rem 0;
   line-height: 1.4;
   min-height: 2.5rem;
   display: -webkit-box;
@@ -109,7 +96,7 @@ body {
   cursor: pointer;
   width: 100%;
   transition: all 0.2s;
-  margin-top: 0.5rem;
+  margin-top: 0;
 }
 
 .details-button:hover {
@@ -273,7 +260,7 @@ body {
   }
 
   .card-image {
-    height: 220px;
+    height: 340px;
   }
 
   .card-body h3 {
@@ -292,7 +279,7 @@ body {
   }
 
   .card-image {
-    height: 200px;
+    height: 320px;
   }
 }
 
@@ -303,21 +290,17 @@ body {
   }
 
   .card-image {
-    height: 180px;
+    height: 280px;
   }
 
   .card-body {
-    padding: 0.875rem;
+    padding: 1rem;
   }
 
   .card-body h3 {
     font-size: 1rem;
     min-height: 2.2rem;
-  }
-
-  .category {
-    font-size: 0.7rem;
-    padding: 0.2rem 0.65rem;
+    margin-bottom: 0.875rem;
   }
 
   .details-button {
@@ -354,21 +337,17 @@ body {
   }
 
   .card-image {
-    height: 220px;
+    height: 300px;
   }
   
   .card-body {
-    padding: 1rem;
+    padding: 1.25rem 1rem;
   }
 
   .card-body h3 {
     font-size: 1.125rem;
     min-height: 2.5rem;
-  }
-
-  .category {
-    font-size: 0.75rem;
-    padding: 0.25rem 0.75rem;
+    margin-bottom: 1rem;
   }
 
   .details-button {
@@ -414,21 +393,17 @@ body {
   }
 
   .card-image {
-    height: 200px;
+    height: 260px;
   }
 
   .card-body {
-    padding: 0.875rem;
+    padding: 1rem;
   }
 
   .card-body h3 {
     font-size: 1rem;
     min-height: 2.2rem;
-  }
-
-  .category {
-    font-size: 0.7rem;
-    padding: 0.2rem 0.6rem;
+    margin-bottom: 0.875rem;
   }
 
   .details-button {
