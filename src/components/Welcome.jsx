@@ -50,23 +50,15 @@ export default function Welcome({ onGetStarted }) {
 
           <div className="hero-image animate-scale-in">
             <div className="image-backdrop"></div>
-            <div className="image-border-gradient"></div>
-            <div className="image-wrapper">
-              <div className="image-glow"></div>
-              <img 
-                src="https://res.cloudinary.com/drs0ewxd1/image/upload/v1/cameroon-recipes/lunch/ndole.jpeg" 
-                alt="Delicious Cameroonian Kati Kati"
-                className="featured-dish"
-              />
-              <div className="image-overlay"></div>
-            </div>
+            <img 
+              src="https://res.cloudinary.com/drs0ewxd1/image/upload/v1/cameroon-recipes/lunch/achu.jpg" 
+              alt="Delicious Cameroonian Achu Dish"
+              className="featured-dish"
+            />
             <div className="image-badge">
               <span className="badge-icon">⭐</span>
               <span className="badge-text">National Dish</span>
             </div>
-            <div className="floating-accent accent-1">✨</div>
-            <div className="floating-accent accent-2">🌟</div>
-            <div className="floating-accent accent-3">💫</div>
           </div>
         </div>
 
