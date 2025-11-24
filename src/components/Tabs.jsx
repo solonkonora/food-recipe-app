@@ -3,6 +3,7 @@ import { Plus, Heart, Clock } from "lucide-react";
 import AddRecipe from "./AddRecipe";
 import FavoriteRecipes from "./favorite-meal";
 import RecentRecipes from "./RecentRecipes";
+import SearchBar from "./search-bar";
 import "../assets/styles/tabs.css";
 
 export default function Tabs() {
@@ -29,6 +30,8 @@ export default function Tabs() {
 
   return (
     <div className="tabs-container">
+      <SearchBar />
+      
       <div className="tabs-header">
         {tabs.map((tab) => {
           const Icon = tab.icon;

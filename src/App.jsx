@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import "./App.css";
-import SearchBar from "./components/search-bar";
 import Tabs from "./components/Tabs";
 import AuthPage from "./components/AuthPage";
 import Welcome from "./components/Welcome";
@@ -75,7 +74,6 @@ export default function App() {
                         </button>
                     </div>
                 </div>
-                <SearchBar />
                 <Tabs />
             </div>
         </>
