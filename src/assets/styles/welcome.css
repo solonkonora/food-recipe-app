@@ -179,26 +179,86 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  perspective: 1000px;
 }
 
 .image-backdrop {
   position: absolute;
-  width: 120%;
-  height: 120%;
-  background: rgba(255, 255, 255, 0.1);
+  width: 140%;
+  height: 140%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, transparent 70%);
   border-radius: 50%;
-  filter: blur(40px);
-  animation: pulse 3s infinite ease-in-out;
+  filter: blur(60px);
+  animation: pulse 4s infinite ease-in-out;
 }
 
 @keyframes pulse {
   0%, 100% {
-    transform: scale(1);
-    opacity: 0.5;
+    transform: scale(1) rotate(0deg);
+    opacity: 0.6;
   }
   50% {
-    transform: scale(1.1);
+    transform: scale(1.15) rotate(180deg);
     opacity: 0.3;
+  }
+}
+
+/* Animated gradient border */
+.image-border-gradient {
+  position: absolute;
+  width: 520px;
+  height: 520px;
+  border-radius: 35px;
+  background: linear-gradient(45deg, #fbbf24, #f97316, #ec4899, #8b5cf6, #3b82f6, #fbbf24);
+  background-size: 300% 300%;
+  animation: gradientRotate 6s ease infinite;
+  z-index: 0;
+  filter: blur(8px);
+  opacity: 0.8;
+}
+
+@keyframes gradientRotate {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.image-wrapper {
+  position: relative;
+  z-index: 1;
+  transform-style: preserve-3d;
+  transition: transform 0.3s ease;
+}
+
+.image-wrapper:hover {
+  transform: translateY(-10px) rotateX(2deg) rotateY(2deg);
+}
+
+.image-glow {
+  position: absolute;
+  inset: -20px;
+  background: linear-gradient(135deg, rgba(249, 115, 22, 0.4), rgba(251, 146, 60, 0.4));
+  border-radius: 35px;
+  filter: blur(30px);
+  opacity: 0.7;
+  z-index: -1;
+  animation: glowPulse 3s ease-in-out infinite;
+}
+
+@keyframes glowPulse {
+  0%, 100% {
+    opacity: 0.7;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.05);
   }
 }
 
@@ -208,33 +268,129 @@
   height: 500px;
   object-fit: cover;
   border-radius: 30px;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+  box-shadow: 
+    0 25px 70px rgba(0,0,0,0.5),
+    0 10px 30px rgba(234, 88, 12, 0.3),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.1);
   position: relative;
   z-index: 1;
-  border: 5px solid rgba(255, 255, 255, 0.2);
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  transition: all 0.4s ease;
+}
+
+.featured-dish:hover {
+  box-shadow: 
+    0 30px 80px rgba(0,0,0,0.6),
+    0 15px 40px rgba(234, 88, 12, 0.5),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+}
+
+.image-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 0%, transparent 50%, rgba(0,0,0,0.1) 100%);
+  border-radius: 30px;
+  pointer-events: none;
+  z-index: 1;
 }
 
 .image-badge {
   position: absolute;
-  bottom: 20px;
-  right: 20px;
-  background: white;
-  padding: 0.75rem 1.5rem;
+  bottom: 25px;
+  right: 25px;
+  background: linear-gradient(135deg, #ffffff 0%, #fef3c7 100%);
+  padding: 0.85rem 1.75rem;
   border-radius: 50px;
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-  z-index: 2;
+  box-shadow: 
+    0 8px 25px rgba(0,0,0,0.3),
+    0 0 0 3px rgba(255, 255, 255, 0.5),
+    inset 0 1px 2px rgba(255,255,255,0.8);
+  z-index: 3;
+  backdrop-filter: blur(10px);
+  animation: badgeBounce 3s ease-in-out infinite;
+}
+
+@keyframes badgeBounce {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-5px) scale(1.05);
+  }
 }
 
 .badge-icon {
-  font-size: 1.25rem;
+  font-size: 1.4rem;
+  animation: starSpin 4s linear infinite;
+}
+
+@keyframes starSpin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .badge-text {
-  font-weight: 600;
-  color: #ea580c;
+  font-weight: 700;
+  font-size: 0.95rem;
+  background: linear-gradient(135deg, #ea580c, #dc2626);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: 0.5px;
+}
+
+/* Floating accent elements */
+.floating-accent {
+  position: absolute;
+  font-size: 2rem;
+  opacity: 0.7;
+  z-index: 2;
+  animation: floatAccent 4s ease-in-out infinite;
+  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.3));
+}
+
+.accent-1 {
+  top: -10px;
+  right: 40px;
+  animation-delay: 0s;
+}
+
+.accent-2 {
+  bottom: 60px;
+  left: -20px;
+  animation-delay: 1.5s;
+}
+
+.accent-3 {
+  top: 50px;
+  left: -30px;
+  animation-delay: 3s;
+}
+
+@keyframes floatAccent {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0.7;
+  }
+  25% {
+    transform: translateY(-20px) rotate(10deg);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(-10px) rotate(-10deg);
+    opacity: 0.8;
+  }
+  75% {
+    transform: translateY(-25px) rotate(5deg);
+    opacity: 0.9;
+  }
 }
 
 /* Features Section */
@@ -432,9 +588,18 @@
     justify-content: center;
   }
 
+  .image-border-gradient {
+    width: 420px;
+    height: 420px;
+  }
+
   .featured-dish {
     max-width: 400px;
     height: 400px;
+  }
+
+  .floating-accent {
+    font-size: 1.5rem;
   }
 
   .hero-logo {
@@ -493,9 +658,32 @@
     letter-spacing: 1.5px;
   }
 
+  .image-border-gradient {
+    width: 320px;
+    height: 320px;
+  }
+
   .featured-dish {
     max-width: 100%;
     height: 300px;
+  }
+
+  .floating-accent {
+    font-size: 1.2rem;
+  }
+
+  .image-badge {
+    bottom: 15px;
+    right: 15px;
+    padding: 0.65rem 1.25rem;
+  }
+
+  .badge-icon {
+    font-size: 1.1rem;
+  }
+
+  .badge-text {
+    font-size: 0.85rem;
   }
 
   .features-section {
