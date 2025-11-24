@@ -34,22 +34,26 @@ export default function Tabs() {
 
   return (
     <div className="tabs-container">
-      <SearchBar />
-      
       <div className="tabs-header">
-        {tabs.map((tab) => {
-          const Icon = tab.icon;
-          return (
-            <button
-              key={tab.id}
-              className={`tab-button ${activeTab === tab.id ? "active" : ""}`}
-              onClick={() => setActiveTab(tab.id)}
-            >
-              <Icon size={20} />
-              <span>{tab.label}</span>
-            </button>
-          );
-        })}
+        <div className="tab-buttons-group">
+          {tabs.map((tab) => {
+            const Icon = tab.icon;
+            return (
+              <button
+                key={tab.id}
+                className={`tab-button ${activeTab === tab.id ? "active" : ""}`}
+                onClick={() => setActiveTab(tab.id)}
+              >
+                <Icon size={20} />
+                <span>{tab.label}</span>
+              </button>
+            );
+          })}
+        </div>
+        
+        <div className="search-bar-wrapper">
+          <SearchBar />
+        </div>
       </div>
 
       <div className="tabs-content">

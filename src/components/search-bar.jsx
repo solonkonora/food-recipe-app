@@ -42,13 +42,11 @@ const SearchBar = () => {
 
   return (
     <div className="search-section">
-      <h2 className="search-title">🍴 Tasty Cameroonian Recipes</h2>
-   
       <form onSubmit={handleSubmit} className="search-form">
         <input
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          placeholder="Search for your favorite recipes..."
+          placeholder="Search recipes..."
           className="form-control"
         />
       </form>
