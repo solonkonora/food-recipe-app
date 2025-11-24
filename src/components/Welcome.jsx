@@ -52,7 +52,7 @@ export default function Welcome({ onGetStarted }) {
             <div className="image-backdrop"></div>
             <img 
               src="https://res.cloudinary.com/drs0ewxd1/image/upload/v1/cameroon-recipes/lunch/ndole.jpeg" 
-              alt="Delicious Cameroonian Ndolé"
+              alt="Delicious Cameroonian Kati Kati"
               className="featured-dish"
             />
             <div className="image-badge">
