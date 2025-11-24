@@ -23,33 +23,48 @@ export function AuthProvider({ children }) {
       }
     };
 
-    checkAuth();
-
-    // Handle Google OAuth callback
-    // When user returns from Google, URL will have ?auth=success
+    // Handle OAuth callback
+    // When user returns from Google/Facebook, URL will have ?auth=success&token=...
     const urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.get('auth') === 'success') {
-      // Remove the query param
+    const authSuccess = urlParams.get('auth') === 'success';
+    const token = urlParams.get('token');
+
+    if (authSuccess && token) {
+      // Store token in localStorage for subsequent requests
+      localStorage.setItem('authToken', token);
+      
+      // Remove query params from URL
       window.history.replaceState({}, document.title, window.location.pathname);
-      // Refresh user data
+      
+      // Fetch user data with the new token
+      checkAuth();
+    } else {
+      // Normal auth check
       checkAuth();
     }
   }, []);
 
   const signUp = async (email, password, full_name) => {
     const data = await api.signup(email, password, full_name);
+    if (data.token) {
+      localStorage.setItem('authToken', data.token); // Store token
+    }
     setUser(data.user);
     return data;
   };
 
   const signIn = async (email, password) => {
     const data = await api.login(email, password);
+    if (data.token) {
+      localStorage.setItem('authToken', data.token); // Store token
+    }
     setUser(data.user);
     return data;
   };
 
   const logout = async () => {
     await api.logout();
+    localStorage.removeItem('authToken'); // Clear stored token
     setUser(null);
   };
 

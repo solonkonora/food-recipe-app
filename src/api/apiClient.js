@@ -3,9 +3,14 @@ const API_BASE = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000/api
 
 async function request(path, options = {}) {
   const url = `${API_BASE}${path}`;
+  
+  // Get token from localStorage if available
+  const token = localStorage.getItem('authToken');
+  
   const opts = {
     headers: {
       'Content-Type': 'application/json',
+      ...(token && { 'Authorization': `Bearer ${token}` }), // Add token to headers if available
     },
     credentials: 'include', // allow cookies (if backend uses HttpOnly cookies)
     ...options,
