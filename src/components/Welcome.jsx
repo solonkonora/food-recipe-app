@@ -51,8 +51,8 @@ export default function Welcome({ onGetStarted }) {
           <div className="hero-image animate-scale-in">
             <div className="image-backdrop"></div>
             <img 
-              src="https://res.cloudinary.com/drs0ewxd1/image/upload/v1/cameroon-recipes/lunch/ndole.jpeg" 
-              alt="Delicious Cameroonian Kati Kati"
+              src="https://res.cloudinary.com/drs0ewxd1/image/upload/v1/cameroon-recipes/lunch/achu.jpg" 
+              alt="Delicious Cameroonian Achu Dish"
               className="featured-dish"
             />
             <div className="image-badge">
