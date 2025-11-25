@@ -3,7 +3,7 @@ import Home from "./home";
 import FeaturedRecipes from "./featuredRecipes";
 import RecipesByCategory from "./RecipesByCategory";
 import Footer from "./footer";
-import "../assets/styles/welcome.css";
+// import "../assets/styles/welcome.css";
 
 export default function Welcome({ onGetStarted }) {
   return (
