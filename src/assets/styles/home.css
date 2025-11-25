@@ -1,7 +1,7 @@
-/* Hero Section */
 .hero-section {
   position: relative;
-  min-height: 100vh;
+  height: 100vh;
+  max-height: 100vh;
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -29,7 +29,7 @@
   background: linear-gradient(
     90deg,
     rgba(15, 23, 42, 0.85) 0%,
-    rgba(15, 23, 42, 0.5) 50%,
+    rgba(15, 23, 42, 0.5) 25%,
     transparent 100%
   );
   backdrop-filter: blur(1px);
@@ -46,7 +46,7 @@
 }
 
 .hero-text {
-  font-size: 3.5rem;
+  font-size: 3rem;
   font-weight: 900;
   color: white;
   line-height: 1.1;
@@ -56,11 +56,11 @@
 }
 
 .hero-subtext {
-  font-size: 1.35rem;
+  font-size: 1rem;
   color: rgba(255, 255, 255, 0.9);
   max-width: 600px;
   line-height: 1.7;
-  margin-bottom: 2.5rem;
+  margin-bottom: 2rem;
   text-shadow: 1px 1px 8px rgba(0, 0, 0, 0.5);
   font-weight: 400;
 }
@@ -196,7 +196,8 @@
 
 @media (max-width: 639px) {
   .hero-section {
-    min-height: 90vh;
+    height: 100vh;
+    max-height: 100vh;
     background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
   }
 
@@ -276,5 +277,27 @@
 
   .hero-content {
     margin-left: 52%;
+    padding: 2.5rem 1.5rem;
+  }
+
+  .hero-text {
+    font-size: 3.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-subtext {
+    font-size: 1.25rem;
+    margin-bottom: 2.5rem;
+    max-width: 500px;
+  }
+
+  .hero-search-input {
+    font-size: 0.95rem;
+    padding: 0.875rem 1.25rem 0.875rem 3.25rem;
+  }
+
+  .hero-cta-button {
+    font-size: 1rem;
+    padding: 0.875rem 2.5rem;
   }
 }

@@ -3,10 +3,15 @@ import RecipeCard from "./recipe-card";
 import "../assets/styles/recent-recipes.css";
 
 export default function RecentRecipes() {
-  const { recipes, isLoading } = useAppContext();
+  const { recipes, isLoading, fetchRecipes } = useAppContext();
 
   // Get the most recent 12 recipes (or all if less than 12)
   const recentRecipes = recipes.slice(0, 12);
+
+  const handleRecipeDeleted = () => {
+    // Refresh the recipes list after deletion
+    fetchRecipes();
+  };
 
   return (
     <div className="recent-recipes-container">
@@ -28,6 +33,7 @@ export default function RecentRecipes() {
               key={recipe.id}
               recipe={recipe}
               recipeName={recipe.title}
+              onRecipeDeleted={handleRecipeDeleted}
             />
           ))}
         </div>

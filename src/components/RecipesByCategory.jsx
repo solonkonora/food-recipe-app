@@ -46,6 +46,11 @@ export default function RecipesByCategory() {
     return category ? category.label : "All Recipes";
   };
 
+  const handleRecipeDeleted = () => {
+    // Refresh the recipes list after deletion
+    fetchRecipes();
+  };
+
   return (
     <div className="recipes-by-category">
       <div className="category-header">
@@ -113,7 +118,11 @@ export default function RecipesByCategory() {
       {!loading && !error && filteredRecipes.length > 0 && (
         <div className="recipes-grid">
           {filteredRecipes.map((recipe) => (
-            <RecipeCard key={recipe.id} recipe={recipe} />
+            <RecipeCard 
+              key={recipe.id} 
+              recipe={recipe}
+              onRecipeDeleted={handleRecipeDeleted}
+            />
           ))}
         </div>
       )}
