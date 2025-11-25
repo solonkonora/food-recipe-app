@@ -12,52 +12,57 @@ export default function Welcome({ onGetStarted }) {
       <div className="floating-food food-4">🍚</div>
 
       <div className="welcome-content">
-        {/* Hero Section */}
+        {/* Hero Section with Image and Overlay */}
         <div className="hero-section">
-          <div className="hero-text">
-            <h1 className="hero-logo animate-fade-in">
-              🍽️ LocalBite
-            </h1>
-            <h2 className="hero-tagline animate-slide-up">
-              Discover Authentic Cameroonian Recipes
-            </h2>
-            <p className="hero-description animate-slide-up-delay">
-              Your gateway to traditional Cameroonian cuisine. Explore, share, and save 
-              your favorite recipes from across all ten regions of Cameroon.
-            </p>
-            
-            <button onClick={onGetStarted} className="cta-button animate-bounce">
-              <span>Get Started</span>
-              <ArrowRight size={20} />
-            </button>
-
-            {/* Stats */}
-            <div className="stats-container animate-fade-in-delay">
-              <div className="stat-item">
-                <span className="stat-number">100+</span>
-                <span className="stat-label">Recipes</span>
-              </div>
-              <div className="stat-item">
-                <span className="stat-number">10</span>
-                <span className="stat-label">Regions</span>
-              </div>
-              <div className="stat-item">
-                <span className="stat-number">5</span>
-                <span className="stat-label">Categories</span>
-              </div>
-            </div>
-          </div>
-
-          <div className="hero-image animate-scale-in">
-            <div className="image-backdrop"></div>
+          <div className="hero-image-container">
             <img 
               src="https://res.cloudinary.com/drs0ewxd1/image/upload/v1/cameroon-recipes/lunch/achu.jpg" 
               alt="Delicious Cameroonian Achu Dish"
-              className="featured-dish"
+              className="hero-background-image"
             />
-            <div className="image-badge">
-              <span className="badge-icon">⭐</span>
-              <span className="badge-text">National Dish</span>
+            <div className="hero-overlay"></div>
+            
+            {/* Text Content Overlaid on Image */}
+            <div className="hero-content-overlay">
+              <div className="overlay-text-wrapper">
+                <h1 className="hero-logo animate-fade-in">
+                  🍽️ LocalBite
+                </h1>
+                <h2 className="hero-tagline animate-slide-up">
+                  Discover Authentic Cameroonian Recipes
+                </h2>
+                <p className="hero-description animate-slide-up-delay">
+                  Your gateway to traditional Cameroonian cuisine. Explore, share, and save 
+                  your favorite recipes from across all ten regions of Cameroon.
+                </p>
+                
+                <button onClick={onGetStarted} className="cta-button animate-bounce">
+                  <span>Get Started</span>
+                  <ArrowRight size={20} />
+                </button>
+
+                {/* Stats */}
+                <div className="stats-container animate-fade-in-delay">
+                  <div className="stat-item">
+                    <span className="stat-number">100+</span>
+                    <span className="stat-label">Recipes</span>
+                  </div>
+                  <div className="stat-item">
+                    <span className="stat-number">10</span>
+                    <span className="stat-label">Regions</span>
+                  </div>
+                  <div className="stat-item">
+                    <span className="stat-number">5</span>
+                    <span className="stat-label">Categories</span>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Badge */}
+              <div className="image-badge">
+                <span className="badge-icon">⭐</span>
+                <span className="badge-text">National Dish</span>
+              </div>
             </div>
           </div>
         </div>
