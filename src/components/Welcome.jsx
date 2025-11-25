@@ -1,8 +1,8 @@
 import PropTypes from "prop-types";
 import Home from "./home";
 import FeaturedRecipes from "./featuredRecipes";
-import RecipesByCategory from "./RecipesByCategory";
 import Footer from "./footer";
+import Categories from "./catergories";
 
 export default function Welcome({ onGetStarted }) {
   return (
@@ -19,7 +19,7 @@ export default function Welcome({ onGetStarted }) {
               Explore our collection of authentic Cameroonian dishes organized by meal type
             </p>
           </div>
-          <RecipesByCategory />
+          <Categories />
         </div>
       </section>
       
