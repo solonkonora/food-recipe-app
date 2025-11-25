@@ -1,4 +1,4 @@
-import "./Footer.css";
+import "./footer.css";
 
 const Footer = () => {
   return (
@@ -8,7 +8,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
           
           <div>
-            <h3 className="footer-title">Heritage Kitchen</h3>
+            <h3 className="footer-title">LocalBite Kitchen</h3>
             <p className="footer-text">
               Preserving culinary traditions, one recipe at a time.
             </p>
@@ -33,7 +33,7 @@ const Footer = () => {
         </div>
 
         <div className="footer-bottom">
-          <p>&copy; 2025 Heritage Kitchen. All rights reserved.</p>
+          <p>&copy; 2025 LocalBites Kitchen. All rights reserved.</p>
         </div>
 
       </div>
