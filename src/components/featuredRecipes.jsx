@@ -1,5 +1,5 @@
 import "../assets/styles/featuredRecipes.css";
-import RecipeCard from "./recipeCard";
+import RecipeCardHome from "./recipeCard";
 
 const FeaturedRecipes = () => {
   const recipes = [
@@ -44,7 +44,7 @@ const FeaturedRecipes = () => {
               className="fade-in"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
-              <RecipeCard {...recipe} />
+              <RecipeCardHome {...recipe} />
             </div>
           ))}
         </div>

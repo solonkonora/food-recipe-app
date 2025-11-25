@@ -3,18 +3,14 @@ import Home from "./home";
 import FeaturedRecipes from "./featuredRecipes";
 import RecipesByCategory from "./RecipesByCategory";
 import Footer from "./footer";
-// import "../assets/styles/welcome.css";
 
 export default function Welcome({ onGetStarted }) {
   return (
     <div className="welcome-page">
-      {/* Hero Section */}
       <Home onGetStarted={onGetStarted} />
       
-      {/* Featured Recipes Section */}
       <FeaturedRecipes />
       
-      {/* Categories Section */}
       <section className="categories-section">
         <div className="container mx-auto px-4 py-16">
           <div className="text-center mb-12">
@@ -27,7 +23,6 @@ export default function Welcome({ onGetStarted }) {
         </div>
       </section>
       
-      {/* Footer */}
       <Footer />
     </div>
   );

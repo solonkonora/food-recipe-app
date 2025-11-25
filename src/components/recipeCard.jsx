@@ -2,7 +2,7 @@ import "../assets/styles/recipeCard.css";
 import { Clock, Users } from "lucide-react";
 import PropTypes from "prop-types";
 
-const RecipeCard = ({ title, image, time, servings, category }) => {
+const RecipeCardHome = ({ title, image, time, servings, category }) => {
   return (
     <article className="recipe-card cursor-pointer group">
       <div className="recipe-image-wrapper">
@@ -37,7 +37,7 @@ const RecipeCard = ({ title, image, time, servings, category }) => {
   );
 };
 
-RecipeCard.propTypes = {
+RecipeCardHome.propTypes = {
   title: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
   time: PropTypes.string.isRequired,
@@ -45,4 +45,4 @@ RecipeCard.propTypes = {
   category: PropTypes.string.isRequired,
 };
 
-export default RecipeCard;
+export default RecipeCardHome;

@@ -2,7 +2,7 @@ import "../assets/styles/home.css";
 import { Search } from "lucide-react";
 import PropTypes from "prop-types";
 
-const heroImage = "https://res.cloudinary.com/drs0ewxd1/image/upload/v1/cameroon-recipes/lunch/kati_kati.png";
+const heroImage = "https://res.cloudinary.com/drs0ewxd1/image/upload/v1/cameroon-recipes/lunch/kati-kati.png";
 
 const Hero = ({ onGetStarted }) => {
   return (
