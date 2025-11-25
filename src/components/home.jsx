@@ -1,28 +1,8 @@
-// import "../assets/styles/home.css";
-
-// const Home = () => {
-
-// return (
-//     <>
-// <div className="main-content">
-// <div className="division-one">
-//   <div className="section-one">
-//     <h2 className="section-title">Unleash the full potential of Delicious Recipes</h2>
-//     <p className="section-text">Explore a world of culinary delights with our food recipe app, where every dish is a delectable adventure waiting to be discovered.</p>
-//   </div>
-// </div>
-// </div>
-// </>
-// )   
-// }
-
-// export default Home;
-
 import "../assets/styles/home.css";
 import { Search } from "lucide-react";
 import PropTypes from "prop-types";
 
-const heroImage = "https://res.cloudinary.com/drs0ewxd1/image/upload/v1/cameroon-recipes/lunch/kati_kati.jpg";
+const heroImage = "https://res.cloudinary.com/drs0ewxd1/image/upload/v1/cameroon-recipes/lunch/kati_kati.png";
 
 const Hero = ({ onGetStarted }) => {
   return (

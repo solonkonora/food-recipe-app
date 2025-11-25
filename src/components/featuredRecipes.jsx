@@ -12,7 +12,7 @@ const FeaturedRecipes = () => {
     },
     {
       title: "Kati Kati",
-      image: "https://res.cloudinary.com/drs0ewxd1/image/upload/v1/cameroon-recipes/lunch/kati_kati.jpg",
+      image: "https://res.cloudinary.com/drs0ewxd1/image/upload/v1/cameroon-recipes/lunch/kati_kati.png",
       time: "45 min",
       servings: "4",
       category: "Lunch"
