@@ -5,26 +5,34 @@
   overflow: hidden;
   display: flex;
   align-items: center;
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
 }
 
 .hero-background {
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 45%;
   background-size: cover;
-  background-position: center;
+  background-position: center right;
   background-repeat: no-repeat;
+  opacity: 0.4;
 }
 
 .hero-overlay {
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 45%;
   background: linear-gradient(
-    135deg,
-    rgba(234, 88, 12, 0.92) 0%,
-    rgba(220, 38, 38, 0.88) 25%,
-    rgba(185, 28, 28, 0.85) 50%
+    90deg,
+    rgba(15, 23, 42, 0.85) 0%,
+    rgba(15, 23, 42, 0.5) 50%,
+    transparent 100%
   );
-  backdrop-filter: blur(2px);
+  backdrop-filter: blur(1px);
 }
 
 .hero-content {
@@ -34,6 +42,7 @@
   margin: 0 auto;
   padding: 2rem 1.5rem;
   width: 100%;
+  margin-left: 48%;
 }
 
 .hero-text {
@@ -42,17 +51,17 @@
   color: white;
   line-height: 1.1;
   margin-bottom: 1.5rem;
-  text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.4);
+  text-shadow: 2px 2px 12px rgba(0, 0, 0, 0.6);
   letter-spacing: -1px;
 }
 
 .hero-subtext {
   font-size: 1.35rem;
-  color: rgba(255, 255, 255, 0.95);
+  color: rgba(255, 255, 255, 0.9);
   max-width: 600px;
   line-height: 1.7;
   margin-bottom: 2.5rem;
-  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
+  text-shadow: 1px 1px 8px rgba(0, 0, 0, 0.5);
   font-weight: 400;
 }
 
@@ -106,14 +115,14 @@
 
 .hero-cta-button {
   padding: 1rem 3rem;
-  background: white;
-  color: #ea580c;
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  color: white;
   border: none;
   border-radius: 50px;
   font-size: 1.15rem;
   font-weight: 700;
   cursor: pointer;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
   transition: all 0.3s ease;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -121,10 +130,9 @@
 }
 
 .hero-cta-button:hover {
-  background: #fff;
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
   transform: translateY(-3px);
-  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4);
-  color: #dc2626;
+  box-shadow: 0 12px 35px rgba(59, 130, 246, 0.5);
 }
 
 .hero-cta-button:active {
@@ -189,6 +197,26 @@
 @media (max-width: 639px) {
   .hero-section {
     min-height: 90vh;
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  }
+
+  .hero-background {
+    width: 100%;
+    opacity: 0.25;
+  }
+
+  .hero-overlay {
+    width: 100%;
+    background: linear-gradient(
+      180deg,
+      rgba(15, 23, 42, 0.75) 0%,
+      rgba(15, 23, 42, 0.85) 100%
+    );
+  }
+
+  .hero-content {
+    margin-left: 0;
+    text-align: center;
   }
 
   .hero-text {
@@ -199,10 +227,14 @@
   .hero-subtext {
     font-size: 1.15rem;
     margin-bottom: 2rem;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .hero-actions {
     margin-top: 2rem;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .hero-search-input {
@@ -230,5 +262,19 @@
   .hero-subtext {
     font-size: 1rem;
     line-height: 1.6;
+  }
+}
+
+@media (min-width: 640px) and (max-width: 1023px) {
+  .hero-background {
+    width: 50%;
+  }
+
+  .hero-overlay {
+    width: 50%;
+  }
+
+  .hero-content {
+    margin-left: 52%;
   }
 }
