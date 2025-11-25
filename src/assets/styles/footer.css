@@ -1,0 +1,37 @@
+.footer {
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  margin-top: 4rem;
+}
+
+.footer-title {
+  font-size: 1.75rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.footer-heading {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.footer-text {
+  color: rgba(var(--primary-foreground-rgb), 0.8);
+}
+
+.footer-link {
+  transition: color 0.25s ease;
+}
+.footer-link:hover {
+  color: var(--primary-foreground);
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(var(--primary-foreground-rgb), 0.2);
+  padding-top: 2rem;
+  text-align: center;
+  color: rgba(var(--primary-foreground-rgb), 0.8);
+}
