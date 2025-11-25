@@ -19,12 +19,12 @@
 // export default Home;
 
 import "./Home.css";
-import { Button } from "@/components/ui/button";
 import { Search } from "lucide-react";
+import PropTypes from "prop-types";
 
 const heroImage = "https://res.cloudinary.com/drs0ewxd1/image/upload/v1/cameroon-recipes/lunch/kati_kati.jpg";
 
-const Hero = () => {
+const Hero = ({ onGetStarted }) => {
   return (
     <section className="hero-section">
       <div 
@@ -62,13 +62,20 @@ const Hero = () => {
             />
           </div>
 
-          <Button size="lg" variant="secondary" className="whitespace-nowrap">
+          <button 
+            onClick={onGetStarted}
+            className="hero-cta-button"
+          >
             Explore Recipes
-          </Button>
+          </button>
         </div>
       </div>
     </section>
   );
+};
+
+Hero.propTypes = {
+  onGetStarted: PropTypes.func,
 };
 
 export default Hero;
