@@ -18,7 +18,7 @@
 
 // export default Home;
 
-import "./home.css";
+import "../assets/styles/home.css";
 import { Search } from "lucide-react";
 import PropTypes from "prop-types";
 
