@@ -1,20 +1,71 @@
 .featured-section {
   position: relative;
+  background: linear-gradient(180deg, #ffffff 0%, #f9fafb 100%);
+  padding: 5rem 0;
 }
 
-/* Subtext under the title */
-.featured-subtext {
-  font-size: 1.125rem;
-  color: var(--muted-foreground);
-  max-width: 32rem;
+.featured-section .container {
+  max-width: 1200px;
   margin: 0 auto;
+  padding: 0 1.5rem;
 }
 
-/* Fade-in animation for cards */
+.section-title {
+  font-size: 3rem;
+  font-weight: 800;
+  color: #1f2937;
+  margin-bottom: 1rem;
+  letter-spacing: -1px;
+  position: relative;
+  display: inline-block;
+  background: linear-gradient(135deg, #ea580c 0%, #dc2626 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.featured-subtext {
+  font-size: 1.25rem;
+  color: #6b7280;
+  max-width: 600px;
+  margin: 0 auto 3rem;
+  line-height: 1.7;
+  font-weight: 400;
+}
+
+.grid {
+  display: grid;
+  gap: 2rem;
+}
+
+.grid-cols-1 {
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+  .md\:grid-cols-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .lg\:grid-cols-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.text-center {
+  text-align: center;
+}
+
+.mb-12 {
+  margin-bottom: 3rem;
+}
+
 @keyframes fadeInFeatured {
   from {
     opacity: 0;
-    transform: translateY(15px);
+    transform: translateY(30px);
   }
   to {
     opacity: 1;
@@ -23,6 +74,60 @@
 }
 
 .fade-in {
-  animation: fadeInFeatured 0.9s ease forwards;
+  animation: fadeInFeatured 0.8s ease forwards;
   opacity: 0;
+}
+
+@media (min-width: 768px) {
+  .featured-section {
+    padding: 6rem 0;
+  }
+
+  .md\:py-24 {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .featured-section {
+    padding: 4rem 0;
+  }
+
+  .section-title {
+    font-size: 2.25rem;
+  }
+
+  .featured-subtext {
+    font-size: 1.125rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .grid {
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .featured-section {
+    padding: 3rem 0;
+  }
+
+  .featured-section .container {
+    padding: 0 1rem;
+  }
+
+  .section-title {
+    font-size: 1.875rem;
+    letter-spacing: -0.5px;
+  }
+
+  .featured-subtext {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .mb-12 {
+    margin-bottom: 2rem;
+  }
 }

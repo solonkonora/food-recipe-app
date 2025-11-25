@@ -1,5 +1,5 @@
 import { Coffee, Sandwich, UtensilsCrossed, Cookie, Popcorn } from "lucide-react";
-import "../assets/styles/categories.css";
+import "../assets/styles/catergories.css";
 
 const Categories = () => {
   const categories = [

@@ -4,17 +4,17 @@ import RecipeCardHome from "./recipeCard";
 const FeaturedRecipes = () => {
   const recipes = [
     {
+      title: "Kati Kati",
+      image: "https://res.cloudinary.com/drs0ewxd1/image/upload/v1/cameroon-recipes/lunch/kati-kati.png",
+      time: "45 min",
+      servings: "4",
+      category: "Lunch"
+    },
+    {
       title: "Ndolé",
       image: "https://res.cloudinary.com/drs0ewxd1/image/upload/v1/cameroon-recipes/lunch/ndole.jpeg",
       time: "1.5 hours",
       servings: "6",
-      category: "Lunch"
-    },
-    {
-      title: "Kati Kati",
-      image: "https://res.cloudinary.com/drs0ewxd1/image/upload/v1/cameroon-recipes/lunch/kati_kati.png",
-      time: "45 min",
-      servings: "4",
       category: "Lunch"
     },
     {
