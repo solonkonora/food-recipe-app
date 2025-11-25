@@ -1,8 +1,8 @@
 import PropTypes from "prop-types";
-import Home from "./home";
+import Home from "../assets/styles/home";
 import FeaturedRecipes from "./featuredRecipes";
 import RecipesByCategory from "./RecipesByCategory";
-import Footer from "./footer";
+import Footer from "../assets/styles/footer";
 // import "../assets/styles/welcome.css";
 
 export default function Welcome({ onGetStarted }) {

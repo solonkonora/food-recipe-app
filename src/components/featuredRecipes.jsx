@@ -1,4 +1,4 @@
-import "./featuredRecipes.css";
+import "../assets/styles/featuredRecipes.css";
 import RecipeCard from "./recipeCard";
 
 const FeaturedRecipes = () => {

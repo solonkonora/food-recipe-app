@@ -1,4 +1,4 @@
-import "./RecipeCard.css";
+import "../assets/styles/recipeCard.css";
 import { Clock, Users } from "lucide-react";
 import PropTypes from "prop-types";
 
