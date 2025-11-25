@@ -1,5 +1,5 @@
-import "./FeaturedRecipes.css";
-import RecipeCard from "./RecipeCard";
+import "./featuredRecipes.css";
+import RecipeCard from "./recipeCard";
 
 const FeaturedRecipes = () => {
   const recipes = [
