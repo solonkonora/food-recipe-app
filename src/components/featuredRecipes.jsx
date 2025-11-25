@@ -1,32 +1,28 @@
 import "./FeaturedRecipes.css";
 import RecipeCard from "./RecipeCard";
 
-import pastaImage from "@/assets/recipe-pasta.jpg";
-import stewImage from "@/assets/recipe-stew.jpg";
-import breadImage from "@/assets/recipe-bread.jpg";
-
 const FeaturedRecipes = () => {
   const recipes = [
     {
-      title: "Grandma's Homemade Pasta",
-      image: pastaImage,
+      title: "Ndolé",
+      image: "https://res.cloudinary.com/drs0ewxd1/image/upload/v1/cameroon-recipes/lunch/ndole.jpeg",
+      time: "1.5 hours",
+      servings: "6",
+      category: "Lunch"
+    },
+    {
+      title: "Kati Kati",
+      image: "https://res.cloudinary.com/drs0ewxd1/image/upload/v1/cameroon-recipes/lunch/kati_kati.jpg",
       time: "45 min",
       servings: "4",
-      category: "Italian"
+      category: "Lunch"
     },
     {
-      title: "Traditional Beef Stew",
-      image: stewImage,
+      title: "Achu Soup",
+      image: "https://res.cloudinary.com/drs0ewxd1/image/upload/v1/cameroon-recipes/lunch/achu.jpg",
       time: "2 hours",
       servings: "6",
-      category: "Comfort Food"
-    },
-    {
-      title: "Artisan Sourdough Bread",
-      image: breadImage,
-      time: "24 hours",
-      servings: "8",
-      category: "Baking"
+      category: "Lunch"
     }
   ];
 
@@ -37,7 +33,7 @@ const FeaturedRecipes = () => {
         <div className="text-center mb-12">
           <h2 className="section-title">Featured Recipes</h2>
           <p className="featured-subtext">
-            Time-tested family favorites that bring warmth to every table
+            Authentic Cameroonian dishes that bring the taste of home to your table
           </p>
         </div>
         
