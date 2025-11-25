@@ -19,9 +19,10 @@
 // export default Home;
 
 import "./Home.css";
-import heroImage from "@/assets/hero-food.jpg";
 import { Button } from "@/components/ui/button";
 import { Search } from "lucide-react";
+
+const heroImage = "https://res.cloudinary.com/drs0ewxd1/image/upload/v1/cameroon-recipes/lunch/kati_kati.jpg";
 
 const Hero = () => {
   return (
