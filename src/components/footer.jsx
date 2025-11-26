@@ -18,8 +18,9 @@ const Footer = () => {
             <h4 className="footer-heading">Quick Links</h4>
             <ul className="space-y-2 footer-text">
               <li><a href="#recipes" className="footer-link">Recipes</a></li>
-              <li><a href="#categories" className="footer-link">Categories</a></li>
               <li><a href="#about" className="footer-link">About Us</a></li>
+              <li><a href="#categories" className="footer-link">Categories</a></li>
+
             </ul>
           </div>
 

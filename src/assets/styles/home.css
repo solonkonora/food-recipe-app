@@ -5,7 +5,7 @@
   overflow: hidden;
   display: flex;
   align-items: center;
-  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+  background: #EDEDED;
 }
 
 .hero-background {
@@ -17,22 +17,7 @@
   background-size: cover;
   background-position: center right;
   background-repeat: no-repeat;
-  opacity: 0.4;
-}
-
-.hero-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  width: 45%;
-  background: linear-gradient(
-    90deg,
-    rgba(15, 23, 42, 0.85) 0%,
-    rgba(15, 23, 42, 0.5) 25%,
-    transparent 100%
-  );
-  backdrop-filter: blur(1px);
+  opacity: 0.6;
 }
 
 .hero-content {
@@ -48,20 +33,20 @@
 .hero-text {
   font-size: 3rem;
   font-weight: 900;
-  color: white;
+  color: #2c3e50;
   line-height: 1.1;
   margin-bottom: 1.5rem;
-  text-shadow: 2px 2px 12px rgba(0, 0, 0, 0.6);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
   letter-spacing: -1px;
 }
 
 .hero-subtext {
   font-size: 1rem;
-  color: rgba(255, 255, 255, 0.9);
+  color: #5a6c7d;
   max-width: 600px;
   line-height: 1.7;
   margin-bottom: 2rem;
-  text-shadow: 1px 1px 8px rgba(0, 0, 0, 0.5);
+  text-shadow: none;
   font-weight: 400;
 }
 
@@ -86,7 +71,7 @@
   transform: translateY(-50%);
   width: 22px;
   height: 22px;
-  color: #6b7280;
+  color: #7f8c8d;
   z-index: 1;
 }
 
@@ -94,35 +79,36 @@
   width: 100%;
   padding: 1rem 1.5rem 1rem 3.5rem;
   border-radius: 50px;
-  border: none;
-  background: rgba(255, 255, 255, 0.98);
+  border: 2px solid #dcdcdc;
+  background: #ffffff;
   font-size: 1rem;
-  color: #1f2937;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  color: #2c3e50;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   transition: all 0.3s ease;
   outline: none;
 }
 
 .hero-search-input:focus {
-  background: white;
-  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4);
+  background: #ffffff;
+  border-color: #f7704f;
+  box-shadow: 0 6px 20px rgba(247, 112, 79, 0.2);
   transform: translateY(-2px);
 }
 
 .hero-search-input::placeholder {
-  color: #9ca3af;
+  color: #95a5a6;
 }
 
 .hero-cta-button {
   padding: 1rem 3rem;
-  background: linear-gradient(135deg, #f7704f 0%, #f89421 100%);
+  background: linear-gradient(135deg, #e74c3c 0%, #f39c12 100%);
   color: white;
   border: none;
   border-radius: 50px;
   font-size: 1.15rem;
   font-weight: 700;
   cursor: pointer;
-  box-shadow: 0 8px 25px rgba(247, 165, 99, 0.4);
+  box-shadow: 0 6px 20px rgba(231, 76, 60, 0.3);
   transition: all 0.3s ease;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -130,9 +116,9 @@
 }
 
 .hero-cta-button:hover {
-  background: linear-gradient(135deg, #f7bb76 0%, #f5ad7d 100%);
+  background: linear-gradient(135deg, #c0392b 0%, #e67e22 100%);
   transform: translateY(-3px);
-  box-shadow: 0 12px 35px rgba(252, 177, 117, 0.5);
+  box-shadow: 0 8px 28px rgba(231, 76, 60, 0.4);
 }
 
 .hero-cta-button:active {
@@ -198,20 +184,21 @@
   .hero-section {
     height: 100vh;
     max-height: 100vh;
-    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    background: #EDEDED;
   }
 
   .hero-background {
     width: 100%;
-    opacity: 0.25;
+    opacity: 0.35;
   }
 
   .hero-overlay {
     width: 100%;
     background: linear-gradient(
       180deg,
-      rgba(15, 23, 42, 0.75) 0%,
-      rgba(15, 23, 42, 0.85) 100%
+      rgba(237, 237, 237, 0.97) 0%,
+      rgba(237, 237, 237, 0.9) 40%,
+      rgba(237, 237, 237, 0.95) 100%
     );
   }
 
@@ -223,6 +210,8 @@
   .hero-text {
     font-size: 2.5rem;
     margin-bottom: 1.25rem;
+    color: #2c3e50;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.08);
   }
 
   .hero-subtext {
@@ -230,6 +219,7 @@
     margin-bottom: 2rem;
     margin-left: auto;
     margin-right: auto;
+    color: #5a6c7d;
   }
 
   .hero-actions {
@@ -258,11 +248,13 @@
   .hero-text {
     font-size: 2rem;
     letter-spacing: -0.5px;
+    color: #2c3e50;
   }
 
   .hero-subtext {
     font-size: 1rem;
     line-height: 1.6;
+    color: #5a6c7d;
   }
 }
 
@@ -273,6 +265,14 @@
 
   .hero-overlay {
     width: 50%;
+    background: linear-gradient(
+      90deg,
+      #EDEDED 0%,
+      #EDEDED 25%,
+      rgba(237, 237, 237, 0.8) 55%,
+      rgba(237, 237, 237, 0.3) 80%,
+      transparent 100%
+    );
   }
 
   .hero-content {

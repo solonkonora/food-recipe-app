@@ -2,7 +2,6 @@
   background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
   color: white;
   padding: 4rem 0 2rem;
-  margin-top: 6rem;
   border-top: 4px solid #ea580c;
   box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
 }
@@ -85,6 +84,7 @@
   display: inline-block;
   position: relative;
   padding-left: 1rem;
+  background-color: #ea580c;
 }
 
 .footer-link::before {
