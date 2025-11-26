@@ -20,7 +20,7 @@ const Categories = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="categories-grid">
           {categories.map((category, index) => {
             const Icon = category.icon;
             return (
@@ -30,7 +30,7 @@ const Categories = () => {
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <div className="icon-wrapper">
-                  <Icon className="h-8 w-8 text-primary" />
+                  <Icon className="category-icon" />
                 </div>
                 <h3 className="category-title">{category.name}</h3>
                 <p className="category-count">{category.count}</p>
