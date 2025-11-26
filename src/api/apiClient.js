@@ -155,9 +155,25 @@ export async function getInstructions(recipeId) {
   return request(`/instructions/${recipeId}`, { method: 'GET' });
 }
 
+export async function updateInstruction(id, data) {
+  return request(`/instructions/${id}`, { method: 'PUT', body: data });
+}
+
+export async function deleteInstruction(id) {
+  return request(`/instructions/${id}`, { method: 'DELETE' });
+}
+
 // ingredients endpoints
 export async function getIngredients(recipeId) {
   return request(`/ingredients/${recipeId}`, { method: 'GET' });
+}
+
+export async function updateIngredient(id, data) {
+  return request(`/ingredients/${id}`, { method: 'PUT', body: data });
+}
+
+export async function deleteIngredient(id) {
+  return request(`/ingredients/${id}`, { method: 'DELETE' });
 }
 
 export default { 
@@ -178,5 +194,9 @@ export default {
   getIngredients,
   createIngredients,
   createInstructions,
+  updateIngredient,
+  updateInstruction,
+  deleteIngredient,
+  deleteInstruction,
   uploadImage
 };

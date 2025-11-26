@@ -25,6 +25,8 @@ const RecipeCard = ({ recipe, recipeName, onRecipeDeleted }) => {
     title: '',
     description: '',
   });
+  const [editedIngredients, setEditedIngredients] = useState([]);
+  const [editedInstructions, setEditedInstructions] = useState([]);
 
   useEffect(() => {
     // Check if the recipe is favorited via backend
@@ -61,8 +63,13 @@ const RecipeCard = ({ recipe, recipeName, onRecipeDeleted }) => {
           api.getIngredients(id),
           api.getInstructions(id)
         ]);
-        setIngredients(ingredientsData || []);
-        setInstructions(instructionsData || []);
+        const ingredientsList = ingredientsData || [];
+        const instructionsList = instructionsData || [];
+        
+        setIngredients(ingredientsList);
+        setInstructions(instructionsList);
+        setEditedIngredients(ingredientsList.map(ing => ({ ...ing })));
+        setEditedInstructions(instructionsList.map(inst => ({ ...inst })));
       } catch (err) {
         console.error("Error fetching recipe details:", err);
         setIngredients([]);
@@ -100,18 +107,57 @@ const RecipeCard = ({ recipe, recipeName, onRecipeDeleted }) => {
       title: title || '',
       description: description || '',
     });
+    setEditedIngredients(ingredients.map(ing => ({ ...ing })));
+    setEditedInstructions(instructions.map(inst => ({ ...inst })));
   };
 
   const handleSaveEdit = async () => {
     try {
+      // Update recipe basic info
       await api.updateRecipe(id, {
         title: editedData.title,
         description: editedData.description,
       });
       
+      // Update ingredients
+      for (const ingredient of editedIngredients) {
+        if (ingredient.id) {
+          await api.updateIngredient(ingredient.id, {
+            name: ingredient.name,
+            quantity: ingredient.quantity,
+            unit: ingredient.unit
+          });
+        } else {
+          // New ingredient
+          await api.createIngredients(id, [{
+            name: ingredient.name,
+            quantity: ingredient.quantity,
+            unit: ingredient.unit
+          }]);
+        }
+      }
+      
+      // Update instructions
+      for (const instruction of editedInstructions) {
+        if (instruction.id) {
+          await api.updateInstruction(instruction.id, {
+            step_number: instruction.step_number,
+            description: instruction.description
+          });
+        } else {
+          // New instruction
+          await api.createInstructions(id, [{
+            step_number: instruction.step_number,
+            description: instruction.description
+          }]);
+        }
+      }
+      
       // Update local recipe data
       recipe.title = editedData.title;
       recipe.description = editedData.description;
+      setIngredients([...editedIngredients]);
+      setInstructions([...editedInstructions]);
       
       setEditMode(false);
       alert('Recipe updated successfully!');
@@ -215,6 +261,101 @@ const RecipeCard = ({ recipe, recipeName, onRecipeDeleted }) => {
                     rows="4"
                   />
                 </div>
+
+                <div className="form-group">
+                  <label>Ingredients:</label>
+                  {editedIngredients.map((ingredient, index) => (
+                    <div key={ingredient.id || `new-${index}`} className="edit-ingredient-row">
+                      <input
+                        type="text"
+                        placeholder="Name"
+                        value={ingredient.name}
+                        onChange={(e) => {
+                          const updated = [...editedIngredients];
+                          updated[index].name = e.target.value;
+                          setEditedIngredients(updated);
+                        }}
+                        className="edit-input-small"
+                      />
+                      <input
+                        type="text"
+                        placeholder="Quantity"
+                        value={ingredient.quantity}
+                        onChange={(e) => {
+                          const updated = [...editedIngredients];
+                          updated[index].quantity = e.target.value;
+                          setEditedIngredients(updated);
+                        }}
+                        className="edit-input-small"
+                      />
+                      <input
+                        type="text"
+                        placeholder="Unit"
+                        value={ingredient.unit}
+                        onChange={(e) => {
+                          const updated = [...editedIngredients];
+                          updated[index].unit = e.target.value;
+                          setEditedIngredients(updated);
+                        }}
+                        className="edit-input-small"
+                      />
+                      <button
+                        type="button"
+                        onClick={() => setEditedIngredients(editedIngredients.filter((_, i) => i !== index))}
+                        className="remove-item-button"
+                      >
+                        ✕
+                      </button>
+                    </div>
+                  ))}
+                  <button
+                    type="button"
+                    onClick={() => setEditedIngredients([...editedIngredients, { name: '', quantity: '', unit: '' }])}
+                    className="add-item-button"
+                  >
+                    + Add Ingredient
+                  </button>
+                </div>
+
+                <div className="form-group">
+                  <label>Instructions:</label>
+                  {editedInstructions.map((instruction, index) => (
+                    <div key={instruction.id || `new-${index}`} className="edit-instruction-row">
+                      <span className="step-label">Step {index + 1}:</span>
+                      <textarea
+                        value={instruction.description}
+                        onChange={(e) => {
+                          const updated = [...editedInstructions];
+                          updated[index].description = e.target.value;
+                          updated[index].step_number = index + 1;
+                          setEditedInstructions(updated);
+                        }}
+                        className="edit-textarea-small"
+                        rows="2"
+                      />
+                      <button
+                        type="button"
+                        onClick={() => {
+                          const updated = editedInstructions.filter((_, i) => i !== index);
+                          // Renumber steps
+                          updated.forEach((inst, i) => inst.step_number = i + 1);
+                          setEditedInstructions(updated);
+                        }}
+                        className="remove-item-button"
+                      >
+                        ✕
+                      </button>
+                    </div>
+                  ))}
+                  <button
+                    type="button"
+                    onClick={() => setEditedInstructions([...editedInstructions, { step_number: editedInstructions.length + 1, description: '' }])}
+                    className="add-item-button"
+                  >
+                    + Add Step
+                  </button>
+                </div>
+
                 <div className="edit-actions">
                   <button className="save-button" onClick={handleSaveEdit}>
                     Save Changes

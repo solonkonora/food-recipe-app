@@ -68,7 +68,7 @@ body {
 .card-body {
   padding: 1.25rem 1rem;
   text-align: center;
-  background-color: rgb(225, 250, 249);
+  background-color: #F5F5F5
 }
 
 .card-body h3 {
@@ -315,6 +315,99 @@ body {
 .cancel-button:hover {
   background-color: #4b5563;
   transform: translateY(-2px);
+}
+
+/* Ingredient and Instruction Edit Rows */
+.edit-ingredient-row,
+.edit-instruction-row {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+  align-items: flex-start;
+}
+
+.edit-input-small {
+  flex: 1;
+  padding: 0.5rem;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-family: inherit;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.edit-input-small:focus {
+  outline: none;
+  border-color: #f97316;
+  box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.1);
+}
+
+.edit-textarea-small {
+  flex: 1;
+  padding: 0.5rem;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-family: inherit;
+  resize: vertical;
+  min-height: 60px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.edit-textarea-small:focus {
+  outline: none;
+  border-color: #f97316;
+  box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.1);
+}
+
+.step-label {
+  display: inline-block;
+  min-width: 60px;
+  padding: 0.5rem 0;
+  font-weight: 600;
+  color: #374151;
+  font-size: 0.9rem;
+}
+
+.remove-item-button {
+  background-color: #fee2e2;
+  color: #dc2626;
+  border: none;
+  border-radius: 6px;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: all 0.2s;
+  flex-shrink: 0;
+}
+
+.remove-item-button:hover {
+  background-color: #fecaca;
+  transform: scale(1.1);
+}
+
+.add-item-button {
+  background-color: #f0fdf4;
+  color: #16a34a;
+  border: 1px solid #bbf7d0;
+  border-radius: 6px;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-top: 0.5rem;
+}
+
+.add-item-button:hover {
+  background-color: #dcfce7;
+  border-color: #86efac;
+  transform: translateY(-1px);
 }
 
 .dialog p {
