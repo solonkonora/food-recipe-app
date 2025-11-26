@@ -73,10 +73,20 @@ export async function createInstructions(recipeId, instructions) {
 
 export async function uploadImage(formData) {
   const url = `${API_BASE}/recipes/upload-image`;
+  
+  // get token from localStorage if available
+  const token = localStorage.getItem('authToken');
+  
+  const headers = {};
+  if (token) {
+    headers['Authorization'] = `Bearer ${token}`;
+  }
+  
   const res = await fetch(url, {
     method: 'POST',
     credentials: 'include',
-    body: formData, // Don't set Content-Type, let browser set it with boundary
+    headers: headers, // add auth header
+    body: formData,
   });
 
   if (!res.ok) {

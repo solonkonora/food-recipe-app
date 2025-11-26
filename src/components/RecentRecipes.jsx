@@ -1,15 +1,15 @@
 import { useAppContext } from "../context/AppContext";
 import RecipeCard from "./recipe-card";
-import "../assets/styles/recent-recipes.css";
+import "../assets/styles/recent-recipes.css"
 
 export default function RecentRecipes() {
   const { recipes, isLoading, fetchRecipes } = useAppContext();
 
-  // Get the most recent 12 recipes (or all if less than 12)
+  // get the most recent 12 recipes (or all if less than 12)
   const recentRecipes = recipes.slice(0, 12);
 
   const handleRecipeDeleted = () => {
-    // Refresh the recipes list after deletion
+    // refresh the recipes list after deletion
     fetchRecipes();
   };
 
