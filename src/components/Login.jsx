@@ -29,12 +29,12 @@ export default function Login({ onSwitchToSignup, onBack }) {
   };
 
   const handleGoogleSignIn = () => {
-    // Redirect to backend Google OAuth route
+    // redirect to backend Google OAuth route
     window.location.href = `${API_URL}/api/auth/google`;
   };
 
   const handleFacebookSignIn = () => {
-    // Redirect to backend Facebook OAuth route
+    // redirect to backend Facebook OAuth route
     window.location.href = `${API_URL}/api/auth/facebook`;
   };
 
@@ -157,7 +157,7 @@ const styles = {
     justifyContent: "center",
     alignItems: "center",
     minHeight: "100vh",
-    background: "linear-gradient(135deg, #ea580c 0%, #dc2626 100%)",
+    background: "#E0F2FF",
   },
   card: {
     backgroundColor: "white",

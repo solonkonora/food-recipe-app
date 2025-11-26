@@ -118,7 +118,7 @@ const styles = {
     justifyContent: "center",
     alignItems: "center",
     minHeight: "100vh",
-    background: "linear-gradient(135deg, #ea580c 0%, #dc2626 100%)",
+    background: "#E0F2FF",
   },
   card: {
     backgroundColor: "white",
