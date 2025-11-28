@@ -51,7 +51,7 @@
   margin-right: 20px;
   font-size: 1rem;
   font-weight: 500;
-  color: #f83302;
+  color: #070707;
   background: white;
   border: 2px solid #e5e7eb;
   border-radius: 12px;
@@ -68,7 +68,7 @@
 
 .category-dropdown:focus {
   outline: none;
-  border-color: #ea580c;
+  color: #ea580c;
   box-shadow: 0 0 0 3px rgba(234, 88, 12, 0.1);
 }
 
