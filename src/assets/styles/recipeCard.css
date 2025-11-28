@@ -56,6 +56,22 @@
 .recipe-content {
   padding: 1.75rem;
   background: white;
+  position: relative;
+}
+
+.recipe-card-arrow {
+  position: absolute;
+  bottom: 1.75rem;
+  right: 1.75rem;
+  color: #ea580c;
+  opacity: 0;
+  transform: translateX(-10px);
+  transition: all 0.3s ease;
+}
+
+.recipe-card:hover .recipe-card-arrow {
+  opacity: 1;
+  transform: translateX(0);
 }
 
 .recipe-title {

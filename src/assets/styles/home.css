@@ -113,6 +113,17 @@
   text-transform: uppercase;
   letter-spacing: 0.5px;
   white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.hero-cta-arrow {
+  transition: transform 0.3s ease;
+}
+
+.hero-cta-button:hover .hero-cta-arrow {
+  transform: translateX(4px);
 }
 
 .hero-cta-button:hover {

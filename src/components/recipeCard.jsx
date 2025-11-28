@@ -1,5 +1,5 @@
 import "../assets/styles/recipeCard.css";
-import { Clock, Users } from "lucide-react";
+import { Clock, Users, ArrowRight } from "lucide-react";
 import PropTypes from "prop-types";
 
 const RecipeCardHome = ({ title, image, time, servings, category }) => {
@@ -31,6 +31,10 @@ const RecipeCardHome = ({ title, image, time, servings, category }) => {
             <Users className="icon" />
             <span>{servings} servings</span>
           </div>
+        </div>
+        
+        <div className="recipe-card-arrow">
+          <ArrowRight size={18} />
         </div>
       </div>
     </article>

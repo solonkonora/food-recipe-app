@@ -1,4 +1,5 @@
 import "../assets/styles/footer.css";
+import { ArrowRight } from "lucide-react";
 
 const Footer = () => {
   return (
@@ -15,12 +16,11 @@ const Footer = () => {
           </div>
 
           <div>
-            <h4 className="footer-heading">Quick Links</h4>
+            <h4 className="footer-heading">Explore Flavors</h4>
             <ul className="space-y-2 footer-text">
-              <li><a href="#recipes" className="footer-link">Recipes</a></li>
-              <li><a href="#about" className="footer-link">About Us</a></li>
-              <li><a href="#categories" className="footer-link">Categories</a></li>
-
+              <li><a href="/" className="footer-link">Home <ArrowRight size={14} className="footer-arrow" /></a></li>
+              <li><a href="#categories" className="footer-link">Meal Categories <ArrowRight size={14} className="footer-arrow" /></a></li>
+              <li><a href="#featuredRecipes" className="footer-link">Featured Recipes <ArrowRight size={14} className="footer-arrow" /></a></li>
             </ul>
           </div>
 
@@ -34,7 +34,7 @@ const Footer = () => {
         </div>
 
         <div className="footer-bottom">
-          <p>&copy; 2025 LocalBites Kitchen. All rights reserved.</p>
+          <p>&copy; 2025 <a href="/" className="footer-link">LocalBites</a> Kitchen. All rights reserved.</p>
         </div>
 
       </div>
