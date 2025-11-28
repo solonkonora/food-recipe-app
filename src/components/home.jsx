@@ -1,5 +1,5 @@
 import "../assets/styles/home.css";
-import { Search, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import PropTypes from "prop-types";
 
 const heroImage = "https://res.cloudinary.com/drs0ewxd1/image/upload/v1/cameroon-recipes/lunch/kati-kati.png";
@@ -33,13 +33,8 @@ const Hero = ({ onGetStarted }) => {
           className="hero-actions animate-fade-in" 
           style={{ animationDelay: "0.2s" }}
         >
-          <div className="hero-search">
-            <Search className="hero-search-icon" />
-            <input
-              type="text"
-              placeholder="Search recipes..."
-              className="hero-search-input"
-            />
+          <div className="hero-explore">
+            <p className="hero-explore-text">Want to explore!</p>
           </div>
 
           <button 

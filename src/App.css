@@ -171,10 +171,16 @@ input:focus {
   text-decoration: none;
   font-weight: 700;
   background-color: transparent;
-  text-decoration: none;
+  padding: 0;
+  border-radius: 0;
+  display: inline;
+  transition: none;
 }
+
 .app-logo-link:hover {
-  color: transparent;
+  color: #ea580c;
+  background-color: transparent;
+  transform: none;
 }
 
 a {
