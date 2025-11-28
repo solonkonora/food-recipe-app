@@ -47,10 +47,10 @@
 }
 
 .category-dropdown {
-  padding-left: 20px;
+  padding: 1.5rem;
   font-size: 1rem;
   font-weight: 500;
-  color: #050505;
+  color: #f83302;
   background: white;
   border: 2px solid #e5e7eb;
   border-radius: 12px;
