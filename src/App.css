@@ -157,8 +157,11 @@ input:focus {
   transform: translateY(-2px);
 }
 
-.app-header h2 a {
-  color: #fffefd;
+.app-logo-link {
+  color: #ea580c;
+  text-decoration: none;
+  font-weight: 700;
+  background-color: transparent;
   text-decoration: none;
 }
 
