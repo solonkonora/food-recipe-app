@@ -64,7 +64,7 @@ export default function App() {
         <>
             <div className="container">
                 <div className="app-header">
-                    <h2><a href="/">LocalBite</a></h2>
+                    <h2><a href="/" className="app-logo-link">LocalBite</a></h2>
                     <div className="user-section">
                         <span className="user-welcome">
                             Welcome, {user.full_name || user.username || user.email.split('@')[0]}!
