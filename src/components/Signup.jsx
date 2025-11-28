@@ -118,7 +118,7 @@ const styles = {
     justifyContent: "center",
     alignItems: "center",
     minHeight: "100vh",
-    background: "#E0F2FF",
+    background: "#f1f5f5ff",
   },
   card: {
     backgroundColor: "white",
@@ -147,6 +147,7 @@ const styles = {
   title: {
     textAlign: "center",
     marginBottom: "1.5rem",
+    marginTop: "2.5rem",
     color: "#333",
     fontSize: "1.5rem",
     fontWeight: "600",
@@ -201,7 +202,7 @@ const styles = {
   },
   button: {
     padding: "0.75rem",
-    background: "linear-gradient(135deg, #ea580c 0%, #dc2626 100%)",
+    background: "#36b317ff)",
     color: "white",
     border: "none",
     borderRadius: "4px",
