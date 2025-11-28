@@ -377,7 +377,10 @@ const RecipeCard = ({ recipe, recipeName, onRecipeDeleted }) => {
                 <div>
                   <h5>Ingredients</h5>
                   {loadingIngredients ? (
-                    <p style={{ fontStyle: 'italic', color: '#6b7280' }}>Loading ingredients...</p>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                      <div className="spinner" style={{ width: '20px', height: '20px', borderWidth: '2px' }}></div>
+                      <p style={{ fontStyle: 'italic', color: '#6b7280', margin: 0 }}>Loading ingredients...</p>
+                    </div>
                   ) : ingredients.length > 0 ? (
                     <ul className="ingredients-list">
                       {ingredients.map((ingredient) => (
@@ -398,7 +401,10 @@ const RecipeCard = ({ recipe, recipeName, onRecipeDeleted }) => {
                 <div>
                   <h5>Step-by-Step Instructions</h5>
                   {loadingInstructions ? (
-                    <p style={{ fontStyle: 'italic', color: '#6b7280' }}>Loading instructions...</p>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                      <div className="spinner" style={{ width: '20px', height: '20px', borderWidth: '2px' }}></div>
+                      <p style={{ fontStyle: 'italic', color: '#6b7280', margin: 0 }}>Loading instructions...</p>
+                    </div>
                   ) : instructions.length > 0 ? (
                     <ol>
                       {instructions.map((instruction) => (

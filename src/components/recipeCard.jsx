@@ -1,29 +1,16 @@
-import { useState } from "react";
 import "../assets/styles/recipeCard.css";
-import { Clock, Users, ArrowRight, X } from "lucide-react";
+import { Clock, Users, ArrowRight } from "lucide-react";
 import PropTypes from "prop-types";
 
 const RecipeCardHome = ({ title, image, time, servings, category }) => {
-  const [showImageModal, setShowImageModal] = useState(false);
-
-  const handleImageClick = (e) => {
-    e.stopPropagation();
-    setShowImageModal(true);
-  };
-
-  const handleCloseModal = () => {
-    setShowImageModal(false);
-  };
-
   return (
-    <>
-      <article className="recipe-card cursor-pointer group">
-        <div className="recipe-image-wrapper" onClick={handleImageClick}>
-          <img 
-            src={image} 
-            alt={title}
-            className="recipe-image"
-          />
+    <article className="recipe-card cursor-pointer group">
+      <div className="recipe-image-wrapper">
+        <img 
+          src={image} 
+          alt={title}
+          className="recipe-image"
+        />
 
         <div className="recipe-category-badge">
           <span className="badge">{category}</span>
@@ -51,28 +38,6 @@ const RecipeCardHome = ({ title, image, time, servings, category }) => {
         </div>
       </div>
     </article>
-
-    {showImageModal && (
-      <div className="image-modal-overlay" onClick={handleCloseModal}>
-        <div className="image-modal-content">
-          <button 
-            className="image-modal-close" 
-            onClick={handleCloseModal}
-            aria-label="Close image"
-          >
-            <X size={24} />
-          </button>
-          <img 
-            src={image} 
-            alt={title}
-            className="image-modal-img"
-            onClick={(e) => e.stopPropagation()}
-          />
-          <div className="image-modal-caption">{title}</div>
-        </div>
-      </div>
-    )}
-    </>
   );
 };
 

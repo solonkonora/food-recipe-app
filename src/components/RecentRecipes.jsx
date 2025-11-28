@@ -24,6 +24,7 @@ export default function RecentRecipes() {
 
       {isLoading ? (
         <div className="loading-state">
+          <div className="spinner"></div>
           <p>Loading recipes...</p>
         </div>
       ) : recentRecipes.length > 0 ? (

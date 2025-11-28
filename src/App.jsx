@@ -44,7 +44,7 @@ export default function App() {
     if (authLoading) {
         return (
             <div className="loading-container">
-                <p className="loading-text">Loading...</p>
+                <div className="spinner"></div>
             </div>
         );
     }
