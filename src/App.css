@@ -5,13 +5,11 @@
   padding: 0;
 }
 
-/* Main Layout */
 body {
   background: #FFF8F0;
   min-height: 100vh;
 }
 
-/* App Container */
 .app-wrapper {
   display: flex;
   min-height: 100vh;
@@ -76,7 +74,6 @@ body {
   transform: translateY(-2px);
 }
 
-/* Recipes Grid */
 .recipes {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -85,7 +82,6 @@ body {
   padding: 0 0.5rem;
 }
 
-/* Sidebar */
 .sidebar {
   background-color: rgba(255, 255, 255, 0.95);
   border-radius: 12px;
@@ -93,7 +89,6 @@ body {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Loading States */
 .loading-container {
   display: flex;
   justify-content: center;
@@ -116,7 +111,6 @@ body {
   font-size: 1.125rem;
 }
 
-/* Form Styling */
 form {
   display: flex;
   width: 100%;
@@ -163,7 +157,11 @@ input:focus {
   transform: translateY(-2px);
 }
 
-/* Links */
+.app-header h2 a {
+  color: #ea580c;
+  text-decoration: none;
+}
+
 a {
   background-color: #ffa500;
   color: #fff;
@@ -179,7 +177,6 @@ a:hover {
   transform: translateY(-2px);
 }
 
-/* Dialog Override (for modal-style dialogs) */
 .dialog {
   position: fixed;
   top: 50%;
