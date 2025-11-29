@@ -690,3 +690,31 @@ body {
     padding: 0.625rem 1.25rem;
   }
 }
+
+.edit-input[type="file"] {
+  padding: 0.5rem;
+  cursor: pointer;
+}
+
+.image-preview,
+.current-image-note {
+  margin-top: 0.5rem;
+  padding: 0.5rem;
+  border-radius: 6px;
+  background-color: #f3f4f6;
+}
+
+.image-preview {
+  background-color: #dbeafe;
+  border: 1px solid #93c5fd;
+}
+
+.image-preview small {
+  color: #1e40af;
+  font-weight: 500;
+}
+
+.current-image-note small {
+  color: #6b7280;
+  font-style: italic;
+}

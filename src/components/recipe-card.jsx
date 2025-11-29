@@ -21,6 +21,8 @@ const RecipeCard = ({ recipe, recipeName, onRecipeDeleted }) => {
   const [loadingInstructions, setLoadingInstructions] = useState(false);
   const [loadingIngredients, setLoadingIngredients] = useState(false);
   const [deleting, setDeleting] = useState(false);
+  const [newImage, setNewImage] = useState(null);
+  const [uploadingImage, setUploadingImage] = useState(false);
   const [editedData, setEditedData] = useState({
     title: '',
     description: '',
@@ -103,6 +105,7 @@ const RecipeCard = ({ recipe, recipeName, onRecipeDeleted }) => {
 
   const handleCancelEdit = () => {
     setEditMode(false);
+    setNewImage(null);
     setEditedData({
       title: title || '',
       description: description || '',
@@ -113,10 +116,31 @@ const RecipeCard = ({ recipe, recipeName, onRecipeDeleted }) => {
 
   const handleSaveEdit = async () => {
     try {
-      // Update recipe basic info
+      let imageUrl = recipe.image_path;
+      
+      // Upload new image if one was selected
+      if (newImage) {
+        setUploadingImage(true);
+        const formData = new FormData();
+        formData.append('image', newImage);
+        
+        try {
+          const response = await api.uploadImage(formData);
+          imageUrl = response.url;
+        } catch (uploadErr) {
+          console.error('Error uploading image:', uploadErr);
+          alert('Failed to upload image. Continuing without image update.');
+        } finally {
+          setUploadingImage(false);
+        }
+      }
+      
+      // Update recipe basic info (preserve image_path and category_id)
       await api.updateRecipe(id, {
         title: editedData.title,
         description: editedData.description,
+        image_path: imageUrl,
+        category_id: recipe.category_id,
       });
       
       // Update ingredients
@@ -156,10 +180,12 @@ const RecipeCard = ({ recipe, recipeName, onRecipeDeleted }) => {
       // Update local recipe data
       recipe.title = editedData.title;
       recipe.description = editedData.description;
+      recipe.image_path = imageUrl;
       setIngredients([...editedIngredients]);
       setInstructions([...editedInstructions]);
       
       setEditMode(false);
+      setNewImage(null);
       alert('Recipe updated successfully!');
     } catch (err) {
       console.error("Error updating recipe:", err);
@@ -263,6 +289,27 @@ const RecipeCard = ({ recipe, recipeName, onRecipeDeleted }) => {
                 </div>
 
                 <div className="form-group">
+                  <label htmlFor="edit-image">Image:</label>
+                  <input
+                    id="edit-image"
+                    type="file"
+                    accept="image/*"
+                    onChange={(e) => setNewImage(e.target.files[0])}
+                    className="edit-input"
+                  />
+                  {newImage && (
+                    <div className="image-preview">
+                      <small>New image selected: {newImage.name}</small>
+                    </div>
+                  )}
+                  {!newImage && (
+                    <div className="current-image-note">
+                      <small>Current image will be kept if no new image is selected</small>
+                    </div>
+                  )}
+                </div>
+
+                <div className="form-group">
                   <label>Ingredients:</label>
                   {editedIngredients.map((ingredient, index) => (
                     <div key={ingredient.id || `new-${index}`} className="edit-ingredient-row">
@@ -357,10 +404,18 @@ const RecipeCard = ({ recipe, recipeName, onRecipeDeleted }) => {
                 </div>
 
                 <div className="edit-actions">
-                  <button className="save-button" onClick={handleSaveEdit}>
-                    Save Changes
+                  <button 
+                    className="save-button" 
+                    onClick={handleSaveEdit}
+                    disabled={uploadingImage}
+                  >
+                    {uploadingImage ? 'Uploading Image...' : 'Save Changes'}
                   </button>
-                  <button className="cancel-button" onClick={handleCancelEdit}>
+                  <button 
+                    className="cancel-button" 
+                    onClick={handleCancelEdit}
+                    disabled={uploadingImage}
+                  >
                     Cancel
                   </button>
                 </div>
@@ -439,6 +494,7 @@ RecipeCard.propTypes = {
     image_path: PropTypes.string,
     description: PropTypes.string,
     user_id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    category_id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   }),
   recipeName: PropTypes.string,
   onRecipeDeleted: PropTypes.func,
