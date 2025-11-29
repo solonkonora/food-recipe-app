@@ -203,9 +203,11 @@ a:hover {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 95%;
-  max-width: 1000px;
-  max-height: 92vh;
+  width: 90%;
+  max-width: none;
+  min-width: 80vw;
+  min-height: 80vh;
+  max-height: 90vh;
   background-color: white;
   padding: 2.5rem;
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
