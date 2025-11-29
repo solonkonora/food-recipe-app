@@ -7,16 +7,21 @@ const AppContext = createContext();
 
 function AppContextProvider({ children }) {
     const [recipes, setRecipes] = useState([]);
+    const [allRecipes, setAllRecipes] = useState([]); // Store unfiltered recipes
     const [isLoading, setIsLoading] = useState(false);
     const [selectedRecipe, setSelectedRecipe] = useState(null);
     const [error, setError] = useState(null);
+    const [searchQuery, setSearchQuery] = useState(''); // Track current search
 
     const fetchRecipes = useCallback(async () => {
         setIsLoading(true);
         setError(null);
         try {
             const data = await api.getRecipes();
-            setRecipes(Array.isArray(data) ? data : []);
+            const recipeList = Array.isArray(data) ? data : [];
+            setAllRecipes(recipeList);
+            setRecipes(recipeList);
+            setSearchQuery(''); // Reset search when fetching all
         } catch (err) {
             console.error('Error fetching recipes', err);
             setError(err);
@@ -27,29 +32,40 @@ function AppContextProvider({ children }) {
 
     const searchRecipes = useCallback(async (query = '') => {
         // Backend doesn't expose a search endpoint yet — fetch all and filter client-side
-        setIsLoading(true);
-        setError(null);
-        try {
-            const all = await api.getRecipes();
-            const list = Array.isArray(all) ? all : [];
-            const q = query.trim().toLowerCase();
-            if (!q) {
-                setRecipes(list);
+        const q = query.trim().toLowerCase();
+        setSearchQuery(q);
+        
+        // Use allRecipes if available, otherwise fetch
+        let recipeList = allRecipes;
+        if (recipeList.length === 0) {
+            setIsLoading(true);
+            setError(null);
+            try {
+                const all = await api.getRecipes();
+                recipeList = Array.isArray(all) ? all : [];
+                setAllRecipes(recipeList);
+            } catch (err) {
+                console.error('Search error', err);
+                setError(err);
+                setIsLoading(false);
                 return;
+            } finally {
+                setIsLoading(false);
             }
-            const filtered = list.filter((r) => {
-                const title = (r.title || '').toString().toLowerCase();
-                const desc = (r.description || '').toString().toLowerCase();
-                return title.includes(q) || desc.includes(q);
-            });
-            setRecipes(filtered);
-        } catch (err) {
-            console.error('Search error', err);
-            setError(err);
-        } finally {
-            setIsLoading(false);
         }
-    }, []);
+        
+        if (!q) {
+            setRecipes(recipeList);
+            return;
+        }
+        
+        const filtered = recipeList.filter((r) => {
+            const title = (r.title || '').toString().toLowerCase();
+            const desc = (r.description || '').toString().toLowerCase();
+            return title.includes(q) || desc.includes(q);
+        });
+        setRecipes(filtered);
+    }, [allRecipes]);
 
     const createRecipe = async (payload, ingredients = [], instructions = []) => {
         setIsLoading(true);
@@ -134,6 +150,8 @@ function AppContextProvider({ children }) {
             value={{
                 isLoading,
                 recipes,
+                allRecipes,
+                searchQuery,
                 setRecipes,
                 fetchRecipes,
                 searchRecipes,

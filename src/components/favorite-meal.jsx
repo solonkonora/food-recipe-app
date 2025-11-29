@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
 import { Heart, Trash2 } from "lucide-react";
 import api from "../api/apiClient";
+import { useAppContext } from "../context/AppContext";
 import "../assets/styles/favorites.css";
 
 const FavoriteRecipes = () => {
     const [favorites, setFavorites] = useState([]);
     const [loading, setLoading] = useState(true);
+    const { searchQuery } = useAppContext();
 
     const fetchFavorites = async () => {
         try {
@@ -33,6 +35,15 @@ const FavoriteRecipes = () => {
         }
     };
 
+    // Filter favorites based on search query
+    const favoritesToShow = searchQuery
+        ? favorites.filter(fav => {
+            const title = (fav.title || '').toLowerCase();
+            const desc = (fav.description || '').toLowerCase();
+            return title.includes(searchQuery) || desc.includes(searchQuery);
+          })
+        : favorites;
+
     if (loading) {
         return (
             <div className="favorites-container">
@@ -54,17 +65,22 @@ const FavoriteRecipes = () => {
                 <Heart size={28} color="#dc2626" fill="#dc2626" />
                 <h2 className="favorites-title">My Favorite Recipes</h2>
             </div>
-            {favorites.length === 0 ? (
+            {favoritesToShow.length === 0 ? (
                 <div className="favorites-empty-state">
                     <Heart size={64} color="#d1d5db" strokeWidth={1} />
-                    <p className="favorites-empty-text">No favorite recipes yet.</p>
+                    <p className="favorites-empty-text">
+                        {favorites.length === 0 ? "No favorite recipes yet." : "No favorites match your search."}
+                    </p>
                     <p className="favorites-empty-subtext">
-                        Start adding recipes to your favorites by clicking the heart icon!
+                        {favorites.length === 0 
+                            ? "Start adding recipes to your favorites by clicking the heart icon!"
+                            : "Try a different search term or clear the search."
+                        }
                     </p>
                 </div>
             ) : (
                 <div className="favorites-grid">
-                    {favorites.map((recipe) => (
+                    {favoritesToShow.map((recipe) => (
                         <div key={recipe.id} className="favorite-recipe-card">
                             <div className="favorite-recipe-image-container">
                                 {recipe.image_path && (
