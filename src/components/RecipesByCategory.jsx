@@ -1,47 +1,47 @@
 import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import { ChefHat } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { ChefHat, ArrowLeft } from "lucide-react";
 import RecipeCard from "./recipe-card";
 import { useAppContext } from "../context/AppContext";
 import "../assets/styles/recipes-by-category.css";
 
 export default function RecipesByCategory({ publicView = false, selectedCategory = null, onLoginRequired }) {
   const [selectedCategoryState, setSelectedCategoryState] = useState(selectedCategory || "all");
-  const { recipes, isLoading, fetchRecipes } = useAppContext();
+  const { recipes, categories, isLoading, fetchRecipes, fetchCategories } = useAppContext();
+  const navigate = useNavigate();
 
-  const categories = [
-    { id: "all", label: "All Recipes" },
-    { id: "1", label: "Breakfast" },
-    { id: "2", label: "Lunch" },
-    { id: "3", label: "Dinner" },
-    { id: "4", label: "Dessert" },
-    { id: "5", label: "Snacks" },
+  // Build categories list with "All Recipes" option
+  const categoryOptions = [
+    { id: "all", name: "All Recipes" },
+    ...categories
   ];
 
   useEffect(() => {
     fetchRecipes();
-  }, [fetchRecipes]);
+    fetchCategories();
+  }, [fetchRecipes, fetchCategories]);
 
   useEffect(() => {
     // map category name to ID when in public view
-    if (selectedCategory) {
+    if (selectedCategory && categories.length > 0) {
       const category = categories.find(cat => 
-        cat.label.toLowerCase() === selectedCategory.toLowerCase()
+        cat.name.toLowerCase() === selectedCategory.toLowerCase()
       );
       if (category) {
-        setSelectedCategoryState(category.id);
+        setSelectedCategoryState(category.id.toString());
       }
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedCategory]);
+  }, [selectedCategory, categories]);
 
   const filteredRecipes = selectedCategoryState === "all" 
     ? recipes 
     : recipes.filter(recipe => recipe.category_id === parseInt(selectedCategoryState));
 
   const getCategoryLabel = (categoryId) => {
-    const category = categories.find(cat => cat.id === categoryId);
-    return category ? category.label : "All Recipes";
+    if (categoryId === "all") return "All Recipes";
+    const category = categories.find(cat => cat.id.toString() === categoryId.toString());
+    return category ? category.name : "All Recipes";
   };
 
   const handleRecipeDeleted = () => {
@@ -51,6 +51,15 @@ export default function RecipesByCategory({ publicView = false, selectedCategory
 
   return (
     <div className="recipes-by-category">
+      {publicView && (
+        <button 
+          onClick={() => navigate('/')} 
+          className="back-button"
+        >
+          <ArrowLeft size={20} />
+          <span>Back to Home</span>
+        </button>
+      )}
       <div className="category-header">
         <div className="header-content">
           <ChefHat size={32} className="header-icon" />
@@ -67,9 +76,9 @@ export default function RecipesByCategory({ publicView = false, selectedCategory
             value={selectedCategoryState}
             onChange={(e) => setSelectedCategoryState(e.target.value)}
           >
-            {categories.map((category) => (
+            {categoryOptions.map((category) => (
               <option key={category.id} value={category.id}>
-                {category.label}
+                {category.name}
               </option>
             ))}
           </select>

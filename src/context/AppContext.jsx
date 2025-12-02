@@ -8,10 +8,21 @@ const AppContext = createContext();
 function AppContextProvider({ children }) {
     const [recipes, setRecipes] = useState([]);
     const [allRecipes, setAllRecipes] = useState([]); // Store unfiltered recipes
+    const [categories, setCategories] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [selectedRecipe, setSelectedRecipe] = useState(null);
     const [error, setError] = useState(null);
     const [searchQuery, setSearchQuery] = useState(''); // Track current search
+
+    const fetchCategories = useCallback(async () => {
+        try {
+            const data = await api.getCategories();
+            const categoryList = Array.isArray(data) ? data : [];
+            setCategories(categoryList);
+        } catch (err) {
+            console.error('Error fetching categories', err);
+        }
+    }, []);
 
     const fetchRecipes = useCallback(async () => {
         setIsLoading(true);
@@ -151,9 +162,11 @@ function AppContextProvider({ children }) {
                 isLoading,
                 recipes,
                 allRecipes,
+                categories,
                 searchQuery,
                 setRecipes,
                 fetchRecipes,
+                fetchCategories,
                 searchRecipes,
                 createRecipe,
                 updateRecipe,

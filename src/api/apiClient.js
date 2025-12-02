@@ -176,6 +176,11 @@ export async function deleteIngredient(id) {
   return request(`/ingredients/${id}`, { method: 'DELETE' });
 }
 
+// categories endpoints
+export async function getCategories() {
+  return request('/categories', { method: 'GET' });
+}
+
 export default { 
   getRecipes, 
   getRecipe, 
@@ -198,5 +203,6 @@ export default {
   updateInstruction,
   deleteIngredient,
   deleteInstruction,
-  uploadImage
+  uploadImage,
+  getCategories
 };

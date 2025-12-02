@@ -4,6 +4,33 @@
   animation: fadeIn 0.5s ease-in;
 }
 
+.recipes-by-category .back-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  background-color: white;
+  color: #374151;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 0.95rem;
+  margin-bottom: 1.5rem;
+}
+
+.recipes-by-category .back-button:hover {
+  background-color: #f9fafb;
+  border-color: #ea580c;
+  color: #ea580c;
+  transform: translateX(-3px);
+}
+
+.recipes-by-category .back-button:active {
+  transform: translateX(-5px);
+}
+
 .category-header {
   display: flex;
   justify-content: space-between;
