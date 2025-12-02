@@ -9,7 +9,8 @@ import api from "../api/apiClient";
 import { useAuth } from "../context/AuthContext";
 import "../assets/styles/recipe-card.css";
 
-const RecipeCard = ({ recipe, recipeName, onRecipeDeleted }) => {
+// eslint-disable-next-line no-unused-vars
+const RecipeCard = ({ recipe, recipeName, onRecipeDeleted, publicView = false, onLoginRequired }) => {
   const { id, title, image_path, description, user_id } = recipe || {};
   const { user } = useAuth();
   const [dialogOpen, setDialogOpen] = useState(false);
@@ -31,7 +32,13 @@ const RecipeCard = ({ recipe, recipeName, onRecipeDeleted }) => {
   const [editedInstructions, setEditedInstructions] = useState([]);
 
   useEffect(() => {
-    // Check if the recipe is favorited via backend
+    // only check favorite status if user is logged in
+    if (!user) {
+      setCheckingFavorite(false);
+      return;
+    }
+
+    // check if the recipe is favorited via backend
     const checkFavoriteStatus = async () => {
       try {
         const { isFavorite: favStatus } = await api.checkFavorite(id);
@@ -46,15 +53,15 @@ const RecipeCard = ({ recipe, recipeName, onRecipeDeleted }) => {
     if (id) {
       checkFavoriteStatus();
     }
-  }, [id]);
+  }, [id, user]);
 
   const handleDialogToggle = async () => {
     if (!dialogOpen) {
-      // Fetch ingredients and instructions when opening dialog
+      // fetch ingredients and instructions when opening dialog
       setLoadingIngredients(true);
       setLoadingInstructions(true);
       
-      // Initialize edit data
+      // initialize edit data
       setEditedData({
         title: title || '',
         description: description || '',
@@ -82,10 +89,18 @@ const RecipeCard = ({ recipe, recipeName, onRecipeDeleted }) => {
       }
     }
     setDialogOpen(!dialogOpen);
-    setEditMode(false); // Reset edit mode when closing
+    setEditMode(false); // reset edit mode when closing
   };
 
   const handleToggleFavorite = async () => {
+    // require login for favoriting
+    if (!user) {
+      if (onLoginRequired) {
+        onLoginRequired();
+      }
+      return;
+    }
+
     try {
       if (isFavorite) {
         await api.removeFavorite(id);
@@ -118,7 +133,7 @@ const RecipeCard = ({ recipe, recipeName, onRecipeDeleted }) => {
     try {
       let imageUrl = recipe.image_path;
       
-      // Upload new image if one was selected
+      // upload new image if one was selected
       if (newImage) {
         setUploadingImage(true);
         const formData = new FormData();
@@ -135,7 +150,7 @@ const RecipeCard = ({ recipe, recipeName, onRecipeDeleted }) => {
         }
       }
       
-      // Update recipe basic info (preserve image_path and category_id)
+      // update recipe basic info (preserve image_path and category_id)
       await api.updateRecipe(id, {
         title: editedData.title,
         description: editedData.description,
@@ -143,7 +158,7 @@ const RecipeCard = ({ recipe, recipeName, onRecipeDeleted }) => {
         category_id: recipe.category_id,
       });
       
-      // Update ingredients
+      // update ingredients
       for (const ingredient of editedIngredients) {
         if (ingredient.id) {
           await api.updateIngredient(ingredient.id, {
@@ -152,7 +167,7 @@ const RecipeCard = ({ recipe, recipeName, onRecipeDeleted }) => {
             unit: ingredient.unit
           });
         } else {
-          // New ingredient
+          // new ingredient
           await api.createIngredients(id, [{
             name: ingredient.name,
             quantity: ingredient.quantity,
@@ -161,7 +176,7 @@ const RecipeCard = ({ recipe, recipeName, onRecipeDeleted }) => {
         }
       }
       
-      // Update instructions
+      // update instructions
       for (const instruction of editedInstructions) {
         if (instruction.id) {
           await api.updateInstruction(instruction.id, {
@@ -169,7 +184,7 @@ const RecipeCard = ({ recipe, recipeName, onRecipeDeleted }) => {
             description: instruction.description
           });
         } else {
-          // New instruction
+          // new instruction
           await api.createInstructions(id, [{
             step_number: instruction.step_number,
             description: instruction.description
@@ -177,7 +192,7 @@ const RecipeCard = ({ recipe, recipeName, onRecipeDeleted }) => {
         }
       }
       
-      // Update local recipe data
+      // update local recipe data
       recipe.title = editedData.title;
       recipe.description = editedData.description;
       recipe.image_path = imageUrl;
@@ -204,7 +219,7 @@ const RecipeCard = ({ recipe, recipeName, onRecipeDeleted }) => {
       alert('Recipe deleted successfully!');
       setDialogOpen(false);
       
-      // Notify parent component to refresh list
+      // notify parent component to refresh list
       if (onRecipeDeleted) {
         onRecipeDeleted(id);
       }
@@ -221,10 +236,12 @@ const RecipeCard = ({ recipe, recipeName, onRecipeDeleted }) => {
   return (
     <>
       <div className="card">
+        {/* Show favorite icon for all users, but require login to use it */}
         <div
           className={`favorite-icon ${isFavorite ? 'favorite' : ''}`}
           onClick={handleToggleFavorite}
           style={{ opacity: checkingFavorite ? 0.5 : 1 }}
+          title={!user ? "Login to favorite recipes" : ""}
         >
           <FontAwesomeIcon icon={isFavorite ? faHeart : faHeartRegular} />
         </div>
@@ -384,7 +401,7 @@ const RecipeCard = ({ recipe, recipeName, onRecipeDeleted }) => {
                         type="button"
                         onClick={() => {
                           const updated = editedInstructions.filter((_, i) => i !== index);
-                          // Renumber steps
+                          // renumber steps
                           updated.forEach((inst, i) => inst.step_number = i + 1);
                           setEditedInstructions(updated);
                         }}
@@ -498,6 +515,8 @@ RecipeCard.propTypes = {
   }),
   recipeName: PropTypes.string,
   onRecipeDeleted: PropTypes.func,
+  publicView: PropTypes.bool,
+  onLoginRequired: PropTypes.func,
 };
 
 export default RecipeCard;

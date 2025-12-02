@@ -3,8 +3,14 @@ import { Clock, Users, ArrowRight } from "lucide-react";
 import PropTypes from "prop-types";
 
 const RecipeCardHome = ({ title, image, time, servings, category }) => {
+  const handleClick = () => {
+    // For now, these are static display cards
+    // later, could link to actual recipe details
+    console.log('Recipe clicked:', title);
+  };
+
   return (
-    <article className="recipe-card cursor-pointer group">
+    <article className="recipe-card cursor-pointer group" onClick={handleClick}>
       <div className="recipe-image-wrapper">
         <img 
           src={image} 
@@ -47,6 +53,7 @@ RecipeCardHome.propTypes = {
   time: PropTypes.string.isRequired,
   servings: PropTypes.string.isRequired,
   category: PropTypes.string.isRequired,
+  onLoginRequired: PropTypes.func,
 };
 
 export default RecipeCardHome;

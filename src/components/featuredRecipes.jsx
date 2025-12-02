@@ -1,7 +1,8 @@
+import PropTypes from "prop-types";
 import "../assets/styles/featuredRecipes.css";
 import RecipeCardHome from "./recipeCard";
 
-const FeaturedRecipes = () => {
+const FeaturedRecipes = ({ onLoginRequired }) => {
   const recipes = [
     {
       title: "Kati Kati",
@@ -44,7 +45,7 @@ const FeaturedRecipes = () => {
               className="fade-in"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
-              <RecipeCardHome {...recipe} />
+              <RecipeCardHome {...recipe} onLoginRequired={onLoginRequired} />
             </div>
           ))}
         </div>
@@ -52,6 +53,10 @@ const FeaturedRecipes = () => {
       </div>
     </section>
   );
+};
+
+FeaturedRecipes.propTypes = {
+  onLoginRequired: PropTypes.func,
 };
 
 export default FeaturedRecipes;
