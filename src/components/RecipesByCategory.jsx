@@ -24,7 +24,7 @@ export default function RecipesByCategory({ publicView = false, selectedCategory
 
   useEffect(() => {
     // map category name to ID when in public view
-    if (publicView && selectedCategory) {
+    if (selectedCategory) {
       const category = categories.find(cat => 
         cat.label.toLowerCase() === selectedCategory.toLowerCase()
       );
@@ -32,7 +32,8 @@ export default function RecipesByCategory({ publicView = false, selectedCategory
         setSelectedCategoryState(category.id);
       }
     }
-  }, [selectedCategory, publicView]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedCategory]);
 
   const filteredRecipes = selectedCategoryState === "all" 
     ? recipes 
