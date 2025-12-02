@@ -7,18 +7,22 @@ const AppContext = createContext();
 
 function AppContextProvider({ children }) {
     const [recipes, setRecipes] = useState([]);
-    const [allRecipes, setAllRecipes] = useState([]); // Store unfiltered recipes
+    const [allRecipes, setAllRecipes] = useState([]); // store unfiltered recipes
     const [categories, setCategories] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [selectedRecipe, setSelectedRecipe] = useState(null);
     const [error, setError] = useState(null);
-    const [searchQuery, setSearchQuery] = useState(''); // Track current search
+    const [searchQuery, setSearchQuery] = useState(''); // track current search
 
     const fetchCategories = useCallback(async () => {
         try {
             const data = await api.getCategories();
             const categoryList = Array.isArray(data) ? data : [];
-            setCategories(categoryList);
+            // remove duplicates if any exist
+            const uniqueCategories = categoryList.filter((cat, index, self) =>
+                index === self.findIndex((c) => c.id === cat.id)
+            );
+            setCategories(uniqueCategories);
         } catch (err) {
             console.error('Error fetching categories', err);
         }
@@ -32,7 +36,7 @@ function AppContextProvider({ children }) {
             const recipeList = Array.isArray(data) ? data : [];
             setAllRecipes(recipeList);
             setRecipes(recipeList);
-            setSearchQuery(''); // Reset search when fetching all
+            setSearchQuery(''); // reset search when fetching all
         } catch (err) {
             console.error('Error fetching recipes', err);
             setError(err);
@@ -42,11 +46,11 @@ function AppContextProvider({ children }) {
     }, []);
 
     const searchRecipes = useCallback(async (query = '') => {
-        // Backend doesn't expose a search endpoint yet — fetch all and filter client-side
+        // backend doesn't expose a search endpoint yet — fetch all and filter client-side
         const q = query.trim().toLowerCase();
         setSearchQuery(q);
         
-        // Use allRecipes if available, otherwise fetch
+        // use allRecipes if available, otherwise fetch
         let recipeList = allRecipes;
         if (recipeList.length === 0) {
             setIsLoading(true);
@@ -82,16 +86,16 @@ function AppContextProvider({ children }) {
         setIsLoading(true);
         setError(null);
         try {
-            // Create recipe first
+            // create recipe first
             const created = await api.createRecipe(payload);
             const recipeId = created.id;
 
-            // Create ingredients if provided
+            // create ingredients if provided
             if (ingredients.length > 0) {
                 await api.createIngredients(recipeId, ingredients);
             }
 
-            // Create instructions if provided
+            // create instructions if provided
             if (instructions.length > 0) {
                 await api.createInstructions(recipeId, instructions);
             }

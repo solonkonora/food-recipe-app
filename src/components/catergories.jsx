@@ -11,12 +11,16 @@ const Categories = ({ onCategoryClick }) => {
     fetchCategories();
   }, [fetchCategories]);
 
+  // Remove duplicate categories if any exist
+  const uniqueCategories = categories.filter((cat, index, self) =>
+    index === self.findIndex((c) => c.id === cat.id)
+  );
+
   // Map icons to category names
   const iconMap = {
     "Breakfast": Coffee,
     "Lunch": Sandwich,
     "Dinner": UtensilsCrossed,
-    "Desserts": Cookie,
     "Dessert": Cookie,
     "Snacks": Popcorn,
   };
@@ -46,24 +50,34 @@ const Categories = ({ onCategoryClick }) => {
         <div className="categories-grid">
           {categories.length === 0 ? (
             <p>Loading categories...</p>
+          ) : recipes.length === 0 ? (
+            <p>Loading recipes...</p>
           ) : (
-            categories.map((category, index) => {
-              const Icon = iconMap[category.name] || UtensilsCrossed;
-              return (
-                <div
-                  key={category.id}
-                  className="category-card animate-fade-in"
-                  style={{ animationDelay: `${index * 0.1}s`, cursor: 'pointer' }}
-                  onClick={() => handleCategoryClick(category.name)}
-                >
-                  <div className="icon-wrapper">
-                    <Icon className="category-icon" />
+            uniqueCategories
+              .filter(category => {
+                // Only show categories that have recipes
+                const count = recipes.filter(r => r.category_id === category.id).length;
+                return count > 0;
+              })
+              .map((category, index) => {
+                const Icon = iconMap[category.name] || UtensilsCrossed;
+                const recipeCount = getCategoryCount(category.id);
+                
+                return (
+                  <div
+                    key={category.id}
+                    className="category-card animate-fade-in"
+                    style={{ animationDelay: `${index * 0.1}s`, cursor: 'pointer' }}
+                    onClick={() => handleCategoryClick(category.name)}
+                  >
+                    <div className="icon-wrapper">
+                      <Icon className="category-icon" />
+                    </div>
+                    <h3 className="category-title">{category.name}</h3>
+                    <p className="category-count">{recipeCount}</p>
                   </div>
-                  <h3 className="category-title">{category.name}</h3>
-                  <p className="category-count">{getCategoryCount(category.id)}</p>
-                </div>
-              );
-            })
+                );
+              })
           )}
         </div>
       </div>
